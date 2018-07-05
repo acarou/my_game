@@ -1,6 +1,6 @@
-var axe = 0;
-var wood = 0
-var woodPerAction = 1;
+let axe = 0;
+let wood = 0;
+let woodPerAction = 1;
 
 class Maps1 extends Phaser.Scene {
 	constructor() {
@@ -25,9 +25,9 @@ class Maps1 extends Phaser.Scene {
 
 
         this.axes = this.textures.get('axes').getFrameNames();
-        var y = 175;
-        for (var i = 0; i < 6; i++) {
-            var axes = this.add.image(y, 550, 'axes', Phaser.Math.RND.pick(this.axes,true)).setDisplaySize(64, 64).setInteractive();
+        let y = 175;
+        for (let i = 0; i < 6; i++) {
+            let axes = this.add.image(y, 550, 'axes', Phaser.Math.RND.pick(this.axes,true)).setDisplaySize(64, 64).setInteractive();
 
             this.input.setDraggable(axes);
             y+= 50
@@ -56,13 +56,13 @@ class Maps1 extends Phaser.Scene {
 		});
 
 
-        this.input.keyboard.on('keyup_SPACE', function (event) {
+        this.input.keyboard.on('keyup_SPACE', function () {
             if (this.skeleton.x >= 100 && this.skeleton.x <= 170 && this.skeleton.y >= 110 && this.skeleton.y <= 160) {
                 wood += woodPerAction;
             }
         }, this);
 
-		this.input.keyboard.on('keydown_A',function(event) {
+		this.input.keyboard.on('keydown_A',function() {
 			if (this.debugText.visible) {
 				this.debugText.setVisible(false);
 			}
@@ -206,7 +206,7 @@ class Maps1 extends Phaser.Scene {
 			this.skeleton.anims.stopOnRepeat();
 		}
 
-		if (Math.floor(this.skeleton.x) == 624 && Math.floor(this.skeleton.y) == 258) 
+		if (Math.floor(this.skeleton.x) === 624 && Math.floor(this.skeleton.y) === 258)
 		{
 			this.scene.start("Maps2");
 		}

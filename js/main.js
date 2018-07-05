@@ -1,4 +1,4 @@
-var config = {
+let config = {
 	type: Phaser.AUTO,
 	width: 800,
 	height: 600,
@@ -15,4 +15,4 @@ var config = {
 	},
 	scene: [ Maps1, Maps2]
 };
-var game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
