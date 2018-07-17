@@ -10,8 +10,8 @@ class Maps1 extends Phaser.Scene {
 	preload() {
         this.load.image('background', 'assets/images/background.png');
         this.load.image('woodIcon', 'assets/images/wood.png');
-		this.load.spritesheet('skeleton','assets/images/skeleton.png', { frameWidth: 32, frameHeight: 48});
-        this.load.spritesheet('bullets', 'assets/images/fire.png', { frameWidth: 21, frameHeight: 18 });
+        this.load.image('bag', 'assets/images/medievals/bag.png');
+        this.load.spritesheet('skeleton','assets/images/skeleton.png', { frameWidth: 32, frameHeight: 48});
         this.load.spritesheet('axes', 'assets/images/axe.png', { frameWidth: 128, frameHeight: 128, endFrame: 50 });
 
         
@@ -19,19 +19,21 @@ class Maps1 extends Phaser.Scene {
 
     create() {
         this.impact.world.setBounds(75, 15, 650, 485);
-        //this.cameras.main.setBounds(0,0, 715, 500);
         this.add.image(80, 20, 'background').setOrigin(0);
         this.add.image(10, 510, 'woodIcon').setOrigin(0).setDisplaySize(63, 46.25);
+        this.add.image(670, 500, 'bag').setOrigin(0);
 
 
         this.axes = this.textures.get('axes').getFrameNames();
         let y = 175;
         for (let i = 0; i < 6; i++) {
             let axes = this.add.image(y, 550, 'axes', Phaser.Math.RND.pick(this.axes,true)).setDisplaySize(64, 64).setInteractive();
+            y+= 50;
 
-            this.input.setDraggable(axes);
-            y+= 50
-
+            axes.on('pointerdown', function () {
+            		axe = i;
+				}
+            );
         }
 
         this.skeleton = this.impact.add.sprite(200, 200, 'skeleton').setMaxVelocity(1000).setActiveCollision();
@@ -42,9 +44,6 @@ class Maps1 extends Phaser.Scene {
 
         this.inventory = this.add.text(90, 520, '', { fontSize: '18px', fill: '#fff' });
 
-		this.input.on('pointerdown',function(event) {
-
-		},this);
 
 
 		this.moveKeys = this.input.keyboard.addKeys({
@@ -101,8 +100,6 @@ class Maps1 extends Phaser.Scene {
 			frameRate: 10,
         });
 
-        this.input.on('pointerdown', function (event, gameObjects) {
-        });
 
         this.input.on('pointerover', function (event, gameObjects) {
             gameObjects[0].setTint(0xff0000);
@@ -118,7 +115,7 @@ class Maps1 extends Phaser.Scene {
 
 	update() {
 
-        this.debugText.setText('x : ' + Math.floor(this.skeleton.x + 0.5) + ' y : ' + Math.floor(this.skeleton.y) + '\naxe : '+axe);
+        this.debugText.setText('x : ' + Math.floor(this.skeleton.x + 0.5) + ' y : ' + Math.floor(this.skeleton.y) + '\naxe : ' + axe + '\nwood_per_action : '+ woodPerAction);
 
         this.inventory.setText(wood);
 
