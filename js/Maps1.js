@@ -14,14 +14,16 @@ class Maps1 extends Phaser.Scene {
         this.load.spritesheet('skeleton','assets/images/skeleton.png', { frameWidth: 32, frameHeight: 48});
         this.load.spritesheet('axes', 'assets/images/axe.png', { frameWidth: 128, frameHeight: 128, endFrame: 50 });
 
-        
+
 	}
 
     create() {
         this.impact.world.setBounds(75, 15, 650, 485);
         this.add.image(80, 20, 'background').setOrigin(0);
         this.add.image(10, 510, 'woodIcon').setOrigin(0).setDisplaySize(63, 46.25);
-        this.add.image(670, 500, 'bag').setOrigin(0);
+        this.bag = this.add.image(670, 500, 'bag').setOrigin(0).setInteractive();
+
+        this.add.zone(100,110,170,160).setName('tree').setInteractive();
 
 
         this.axes = this.textures.get('axes').getFrameNames();
@@ -31,9 +33,20 @@ class Maps1 extends Phaser.Scene {
             y+= 50;
 
             axes.on('pointerdown', function () {
-            		axe = i;
-				}
-            );
+            	this.setTint(0xffff);
+            	axe = i;
+            });
+            axes.on('pointerup', function () {
+            	this.setTint(0xff0000);
+            });
+
+            axes.on('pointerover', function () {
+                this.setTint(0xff0000);
+            });
+
+            axes.on('pointerout', function () {
+                this.clearTint();
+            });
         }
 
         this.skeleton = this.impact.add.sprite(200, 200, 'skeleton').setMaxVelocity(1000).setActiveCollision();
@@ -51,7 +64,21 @@ class Maps1 extends Phaser.Scene {
 			'down': Phaser.Input.Keyboard.KeyCodes.S,
 			'left': Phaser.Input.Keyboard.KeyCodes.Q,
 			'right': Phaser.Input.Keyboard.KeyCodes.D,
+		});
 
+		this.bag.on('pointerover', function(){
+			this.setTint(0xdfbf64)
+		});
+		this.bag.on('pointerout', function(){
+			this.clearTint();
+		});
+
+		this.bag.on('pointerdown', function(){
+            this.setTint(0xf0f0f0);
+        });
+
+		this.bag.on('pointerup', function(){
+			this.setTint(0xdfbf64);
 		});
 
 
@@ -98,18 +125,6 @@ class Maps1 extends Phaser.Scene {
 			key: 'down',
 			frames: this.anims.generateFrameNumbers('skeleton', { start: 0, end: 3 }),
 			frameRate: 10,
-        });
-
-
-        this.input.on('pointerover', function (event, gameObjects) {
-            gameObjects[0].setTint(0xff0000);
-
-        });
-
-        this.input.on('pointerout', function (event, gameObjects) {
-
-            gameObjects[0].clearTint();
-
         });
 	}
 
@@ -200,7 +215,6 @@ class Maps1 extends Phaser.Scene {
 		{
 			this.skeleton.setVelocityX(0);
 			this.skeleton.setVelocityY(0);
-			this.skeleton.anims.stopOnRepeat();
 		}
 
 		if (Math.floor(this.skeleton.x) === 624 && Math.floor(this.skeleton.y) === 258)
