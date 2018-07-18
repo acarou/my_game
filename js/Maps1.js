@@ -9,7 +9,7 @@ class Maps1 extends Phaser.Scene {
 
 	preload() {
         this.load.image('background', 'assets/images/background.png');
-        this.load.image('woodIcon', 'assets/images/wood.png');
+        this.load.image('woodIcon', 'assets/images/medievals/log_oak_2.png');
         this.load.image('bag', 'assets/images/medievals/bag.png');
         this.load.spritesheet('skeleton','assets/images/skeleton.png', { frameWidth: 32, frameHeight: 48});
         this.load.spritesheet('axes', 'assets/images/axe.png', { frameWidth: 128, frameHeight: 128, endFrame: 50 });
@@ -20,10 +20,10 @@ class Maps1 extends Phaser.Scene {
     create() {
         this.impact.world.setBounds(75, 15, 650, 485);
         this.add.image(80, 20, 'background').setOrigin(0);
-        this.add.image(10, 510, 'woodIcon').setOrigin(0).setDisplaySize(63, 46.25);
+        this.add.image(10, 510, 'woodIcon').setOrigin(0);
         this.bag = this.add.image(670, 500, 'bag').setOrigin(0).setInteractive();
 
-        this.add.zone(100,110,170,160).setName('tree').setInteractive();
+        this.tree = this.add.zone(100,110,170,160).setName('tree').setInteractive();
 
 
         this.axes = this.textures.get('axes').getFrameNames();
@@ -35,6 +35,7 @@ class Maps1 extends Phaser.Scene {
             axes.on('pointerdown', function () {
             	this.setTint(0xffff);
             	axe = i;
+            	woodPerAction = getAxe(i);
             });
             axes.on('pointerup', function () {
             	this.setTint(0xff0000);
@@ -55,9 +56,11 @@ class Maps1 extends Phaser.Scene {
 
 		this.debugText = this.add.text(10,485,'x: y :', { fontSize: '12px', fill: '#fff' }).setVisible(false);
 
-        this.inventory = this.add.text(90, 520, '', { fontSize: '18px', fill: '#fff' });
+        this.inventory = this.add.text(120, 550, '', { fontSize: '18px', fill: '#fff' });
 
-
+		this.tree.on('enterzone',function(){
+			console.log('enter');
+		});
 
 		this.moveKeys = this.input.keyboard.addKeys({
 			'up': Phaser.Input.Keyboard.KeyCodes.Z,
@@ -222,4 +225,30 @@ class Maps1 extends Phaser.Scene {
 			this.scene.start("Maps2");
 		}
 	}
+}
+
+
+function getAxe(axe) {
+	let woodPerAction;
+	switch (axe) {
+		case 0:
+			woodPerAction = 1;
+			break;
+		case 1:
+            woodPerAction = 2;
+			break;
+		case 2:
+            woodPerAction = 4;
+			break;
+		case 3:
+            woodPerAction = 8;
+			break;
+		case 4:
+            woodPerAction = 16;
+			break;
+		case 5:
+            woodPerAction = 32;
+			break;
+	}
+	return woodPerAction;
 }
