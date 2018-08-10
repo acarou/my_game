@@ -55,7 +55,6 @@ class Maps1 extends Phaser.Scene {
 
             axes.on('pointerover', function () {
                 this.setTint(0xff0000);
-                console.log(this.getTint);
             });
 
             axes.on('pointerout', function () {
@@ -264,10 +263,14 @@ class Maps1 extends Phaser.Scene {
 			this.skeleton.setVelocityY(0);
 		}
 
-		if (Math.floor(this.skeleton.x) === 706 && Math.floor(this.skeleton.y) === 275)
+		if (Math.floor(this.skeleton.x) === 709 && Math.floor(this.skeleton.y) === 275)
 		{
 			this.scene.start("Maps2");
 		}
+	}
+
+	destroy() {
+		console.log('toto');
 	}
 }
 
@@ -295,4 +298,31 @@ function getAxe(axeLevel) {
 			break;
 	}
 	return woodPerAction;
+}
+
+function buyAxe(axeLevel,wood) {
+
+    let woodPerAction;
+    switch (axeLevel) {
+        case 0:
+            woodPerAction = 1;
+            break;
+        case 1:
+            woodPerAction = 2;
+            break;
+        case 2:
+            woodPerAction = 4;
+            break;
+        case 3:
+            woodPerAction = 8;
+            break;
+        case 4:
+            woodPerAction = 16;
+            break;
+        case 5:
+            woodPerAction = 32;
+            break;
+    }
+    return woodPerAction;
+
 }
