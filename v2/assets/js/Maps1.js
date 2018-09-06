@@ -1,5 +1,6 @@
 var graphics, path, enemies, turrets, bullets;
 var ENEMY_SPEED = 1 / 10000;
+var BULLET_DAMAGE = 20;
 
 var map = [
     [0, -1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -44,6 +45,15 @@ var Enemy = new Phaser.Class({
         path.getPoint(this.follower.t, this.follower.vec);
 
         this.setPosition(this.follower.vec.x, this.follower.vec.y);
+        this.hp = 100;
+    },
+    receiveDamage: function (damage) {
+        this.hp -= damage;
+
+        if (this.hp <= 0) {
+            this.setActive(false);
+            this.setVisible(false);
+        }
     }
 });
 
@@ -84,7 +94,7 @@ var Bullet = new Phaser.Class({
     Extends: Phaser.GameObjects.Image,
 
     initialize: function Bullet(scene) {
-        Phaser.GameObjects.Image.call(this.scene, 0, 0, 'bullet');
+        Phaser.GameObjects.Image.call(this, scene, 0, 0, 'bullet');
 
         this.dx = 0;
         this.dy = 0;
@@ -94,7 +104,7 @@ var Bullet = new Phaser.Class({
 
     },
     fire: function (x, y, angle) {
-        this.setAcceleration(true);
+        this.setActive(true);
         this.setVisible(true);
 
         this.setPosition(x, y);
@@ -141,7 +151,7 @@ class Maps1 extends Phaser.Scene {
 
         path.draw(graphics);
 
-        enemies = this.add.group({
+        enemies = this.physics.add.group({
             classType: Enemy,
             runChildUpdate: true
         });
@@ -158,10 +168,12 @@ class Maps1 extends Phaser.Scene {
 
         this.input.on('pointerdown', placeTurret);
 
-        bullets = this.add.group({
+        bullets = this.physics.add.group({
             classType: Bullet,
             runChildUpdate: true
         });
+
+        this.physics.add.overlap(enemies, bullets, damageEnemy);
     }
 
     update(time, delta) {
@@ -228,4 +240,13 @@ function getEnemy(x, y, distance) {
         }
     }
     return false;
+}
+
+function damageEnemy(enemy, bullet) {
+    if (enemy.active == true && bullet.active == true) {
+        bullet.setActive(false);
+        bullet.setVisible(false);
+
+        enemy.receiveDamage(BULLET_DAMAGE);
+    }
 }
