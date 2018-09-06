@@ -1,7 +1,6 @@
-var graphics, path, enemies, turrets, bullets;
+var graphics, path, enemies, turrets, bullets, money = 50;
 var ENEMY_SPEED = 1 / 10000;
 var BULLET_DAMAGE = 20;
-
 var map = [
     [0, -1, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, -1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,6 +52,7 @@ var Enemy = new Phaser.Class({
         if (this.hp <= 0) {
             this.setActive(false);
             this.setVisible(false);
+            money += 20;
         }
     }
 });
@@ -76,7 +76,7 @@ var Turret = new Phaser.Class({
     update: function (time, delta) {
         if (time > this.nextTic) {
             this.fire();
-            this.nextTic = time + 1000;
+            this.nextTic = time + 500;
         }
     },
     fire: function () {
@@ -140,6 +140,7 @@ class Maps1 extends Phaser.Scene {
     }
 
     create() {
+        this.money = this.add.text(20, 450, "30 $");
         var graphics = this.add.graphics();
 
         path = this.add.path(96, -32);
@@ -150,7 +151,6 @@ class Maps1 extends Phaser.Scene {
         graphics.lineStyle(3, 0xffffff, 1);
 
         path.draw(graphics);
-
         enemies = this.physics.add.group({
             classType: Enemy,
             runChildUpdate: true
@@ -177,6 +177,7 @@ class Maps1 extends Phaser.Scene {
     }
 
     update(time, delta) {
+        this.money.setText(money + " $");
         if (time > this.nextEnemy) {
             var enemy = enemies.get();
             if (enemy) {
@@ -210,7 +211,8 @@ function drawGrid(graphics) {
 function placeTurret(pointer) {
     var i = Math.floor(pointer.y / 64);
     var j = Math.floor(pointer.x / 64);
-    if (canPlaceTurret(i, j)) {
+    if (canPlaceTurret(i, j) & money > 20) {
+        money -= 20;
         var turret = turrets.get();
         if (turret) {
             turret.setActive(true);
