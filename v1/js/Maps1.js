@@ -19,7 +19,8 @@ class Maps1 extends Phaser.Scene {
         this.impact.world.setBounds(75, 15, 650, 485);
 
         this.add.image(80, 20, 'background').setOrigin(0);
-        this.add.image(10, 510, 'woodIcon').setOrigin(0);
+        this.wood = this.add.image(360, 410, 'woodIcon').setOrigin(0).setDepth(2).setScale(1);
+
 
         /**
 		 *
@@ -27,16 +28,24 @@ class Maps1 extends Phaser.Scene {
          *
          */
         this.debugText = this.add.text(10,485,'x: y :', { fontSize: '12px', fill: '#fff' }).setVisible(false);
-        this.inventory = this.add.text(120, 550, '', { fontSize: '18px', fill: '#fff' });
+        this.inventory = this.add.text(405, 480, '', { fontSize: '18px', fill: '#fff' }).setDepth(2).setVisible(false);
 
         /**
 		 * end text part
          */
 
         /**
-         *
+		 * create inventory menu
+         */
+
+        var rect = new Phaser.Geom.Rectangle(360, 420, 360, 80);
+
+        var graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+
+        graphics.fillRectShape(rect).setVisible(false).setDepth(1);
+
+        /**
          *  create axe part
-         *
          */
         this.axes = this.textures.get('axes').getFrameNames();
         let y = 175;
@@ -85,6 +94,15 @@ class Maps1 extends Phaser.Scene {
 
 		this.bag.on('pointerdown', function(){
             this.setTint(0xf0f0f0);
+            if (graphics.visible) {
+                graphics.setVisible(false);
+                this.wood.setVisible(false);
+                this.inventory.setVisible(false);
+            } else {
+                this.wood.setVisible(true);
+                this.inventory.setVisible(true);
+            	graphics.setVisible(true);
+			}
         });
 
 		this.bag.on('pointerup', function(){
