@@ -12,6 +12,8 @@ class Game extends Phaser.Scene {
     }
 
     create() {
+        debugText = this.add.text(600,50,"",{ fontFamily: 'Arial', fontSize: 24, color: '#ffff00' });
+
         this.add.image(0,0,'pallet-town').setOrigin(0);
         player = this.physics.add.sprite(200, 200, 'ash', 1).setCollideWorldBounds(true);
         this.cameras.main.setBounds(0, 0, 544, 432);
@@ -19,11 +21,17 @@ class Game extends Phaser.Scene {
         this.cameras.main.zoom = 3;
         this.cameras.main.startFollow(player);
 
-        player.speedRate = 0.5;
+        /**
+         * Player define
+         */
+        player.walkPower = 0.8;
+        player.runPower = 1.3;
+        player.speedRate = player.walkPower;
 
-
-
-
+        /**
+         * MOVE
+         */
+        cursors = this.input.keyboard.createCursorKeys();
 
 
         moveKeys = this.input.keyboard.addKeys({
@@ -33,12 +41,21 @@ class Game extends Phaser.Scene {
             'right': Phaser.Input.Keyboard.KeyCodes.D
         });
 
-        this.input.on('keydown_A', function () {
-            player.speedRate = 2;
+        /**
+         * RUN
+         */
+
+        this.input.keyboard.on('keydown_SHIFT', function () {
+            player.speedRate = player.runPower;
         });
 
-        cursors = this.input.keyboard.createCursorKeys();
+        this.input.keyboard.on('keyup_SHIFT', function () {
+           player.speedRate = player.walkPower;
+        });
 
+        /**
+         * ANIMATION
+         */
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('ash', { start:9, end: 11}),
@@ -69,6 +86,7 @@ class Game extends Phaser.Scene {
     }
 
     update(time, delta) {
+
         player.body.setVelocity(0);
 
         // Horizontal movement
@@ -82,7 +100,7 @@ class Game extends Phaser.Scene {
         }
 
         // Vertical movement
-        if (cursors.up.isDown)
+        else if (cursors.up.isDown)
         {
             player.body.setVelocityY(-80 * player.speedRate);
         }
