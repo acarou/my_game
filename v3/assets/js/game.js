@@ -1,4 +1,6 @@
-var player,moveKeys, cursors, debugText, map;
+var player,moveKeys, cursors, map;
+
+var debugText, showDebug, debugGraphics;
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -6,20 +8,61 @@ class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('pallet-town', 'assets/images/background/Pallet.gif');
+        this.load.image('pallet-town-tiles', 'assets/images/Pallet_tiles.png');
+        this.load.tilemapCSV('pallet-map', 'assets/images/Pallet_map.csv');
         this.load.spritesheet('ash', 'assets/images/ash/walk.png', { frameWidth: 15, frameHeight: 19})
 
     }
 
     create() {
+
         debugText = this.add.text(600,50,"",{ fontFamily: 'Arial', fontSize: 24, color: '#ffff00' });
 
-        this.add.image(0,0,'pallet-town').setOrigin(0);
+        /**
+         * Main
+         */
+
+        map = this.make.tilemap( { key: 'pallet-map', tileWidth: 16, tileHeight: 16});
+
+        var tileset = map.addTilesetImage('pallet-town-tiles');
+        var layer = map.createStaticLayer(0, tileset, 0, 0);
+
+        map.setCollisionBetween(0,5);
+        map.setCollisionBetween(7,13);
+        map.setCollisionBetween(16,19);
+        map.setCollisionBetween(38,40);
+        map.setCollisionBetween(43,45);
+        map.setCollisionBetween(48,52);
+        map.setCollisionBetween(54,59);
+        map.setCollisionBetween(68,71);
+        map.setCollisionBetween(75, 86);
+        map.setCollisionBetween(89, 95);
+        map.setCollisionBetween(108,108);
+        map.setCollisionBetween(115,117);
+        map.setCollisionBetween(119,120);
+        map.setCollisionBetween(124,126);
+        map.setCollisionBetween(138,142);
+        map.setCollisionBetween(144,144);
+
+
+        //this.add.image(0,0,'pallet-town').setOrigin(0);
         player = this.physics.add.sprite(200, 200, 'ash', 1).setCollideWorldBounds(true);
         this.cameras.main.setBounds(0, 0, 544, 432);
         this.physics.world.setBounds(0, 0, 544, 432);
         this.cameras.main.zoom = 3;
         this.cameras.main.startFollow(player);
+
+        this.physics.add.collider(player, layer);
+
+        /**
+         * Debug
+         */
+        debugGraphics = this.add.graphics();
+
+        this.input.keyboard.on('keydown_C', function (event) {
+            showDebug = !showDebug;
+            drawDebug();
+        });
 
         /**
          * Player define
@@ -126,6 +169,20 @@ class Game extends Phaser.Scene {
         }
 
     }
+}
 
+function drawDebug ()
+{
+    debugGraphics.clear();
+
+    if (showDebug)
+    {
+        // Pass in null for any of the style options to disable drawing that component
+        map.renderDebug(debugGraphics, {
+            tileColor: null, // Non-colliding tiles
+            collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
+            faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
+        });
+    }
 
 }
