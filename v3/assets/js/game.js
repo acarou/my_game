@@ -1,4 +1,4 @@
-var player,moveKeys, cursors, map;
+var player,moveKeys, cursors, map, pokeball;
 
 var debugText, showDebug, debugGraphics;
 
@@ -10,6 +10,7 @@ class Game extends Phaser.Scene {
     preload() {
         this.load.image('pallet-town-tiles', 'assets/images/Pallet_tiles.png');
         this.load.tilemapCSV('pallet-map', 'assets/images/Pallet_map.csv');
+        this.load.image('pokeball','assets/images/pokeball.png');
         this.load.spritesheet('ash', 'assets/images/ash/walk.png', { frameWidth: 15, frameHeight: 19})
 
     }
@@ -53,6 +54,13 @@ class Game extends Phaser.Scene {
         this.cameras.main.startFollow(player);
 
         this.physics.add.collider(player, layer);
+
+        /**
+         * pokeball
+         */
+        pokeball = this.physics.add.group();
+
+        this.physics.add.collider(player, pokeball);
 
         /**
          * Debug
