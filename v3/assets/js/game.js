@@ -1,6 +1,8 @@
-var player,moveKeys, cursors, map, pokeball;
+var player, moveKeys, cursors, map, pokeball;
 
 var debugText, showDebug, debugGraphics;
+
+var toggleBike;
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -10,44 +12,46 @@ class Game extends Phaser.Scene {
     preload() {
         this.load.image('pallet-town-tiles', 'assets/images/Pallet_tiles.png');
         this.load.tilemapCSV('pallet-map', 'assets/images/Pallet_map.csv');
-        this.load.image('pokeball','assets/images/pokeball.png');
-        this.load.spritesheet('ash', 'assets/images/ash/walk.png', { frameWidth: 15, frameHeight: 19})
+        this.load.image('pokeball', 'assets/images/pokeball.png');
+        this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
+        this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
+        this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
 
     }
 
     create() {
 
-        debugText = this.add.text(600,50,"",{ fontFamily: 'Arial', fontSize: 24, color: '#ffff00' });
+        debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
 
         /**
          * Main
          */
 
-        map = this.make.tilemap( { key: 'pallet-map', tileWidth: 16, tileHeight: 16});
+        map = this.make.tilemap({key: 'pallet-map', tileWidth: 16, tileHeight: 16});
 
         var tileset = map.addTilesetImage('pallet-town-tiles');
         var layer = map.createStaticLayer(0, tileset, 0, 0);
 
-        map.setCollisionBetween(0,5);
-        map.setCollisionBetween(7,13);
-        map.setCollisionBetween(16,19);
-        map.setCollisionBetween(38,40);
-        map.setCollisionBetween(43,45);
-        map.setCollisionBetween(48,52);
-        map.setCollisionBetween(54,59);
-        map.setCollisionBetween(68,71);
+        map.setCollisionBetween(0, 5);
+        map.setCollisionBetween(7, 13);
+        map.setCollisionBetween(16, 19);
+        map.setCollisionBetween(38, 40);
+        map.setCollisionBetween(43, 45);
+        map.setCollisionBetween(48, 52);
+        map.setCollisionBetween(54, 59);
+        map.setCollisionBetween(68, 71);
         map.setCollisionBetween(75, 86);
         map.setCollisionBetween(89, 95);
-        map.setCollisionBetween(108,108);
-        map.setCollisionBetween(115,117);
-        map.setCollisionBetween(119,120);
-        map.setCollisionBetween(124,126);
-        map.setCollisionBetween(138,142);
-        map.setCollisionBetween(144,144);
+        map.setCollisionBetween(108, 108);
+        map.setCollisionBetween(115, 117);
+        map.setCollisionBetween(119, 120);
+        map.setCollisionBetween(124, 126);
+        map.setCollisionBetween(138, 142);
+        map.setCollisionBetween(144, 144);
 
 
         //this.add.image(0,0,'pallet-town').setOrigin(0);
-        player = this.physics.add.sprite(200, 200, 'ash', 1).setCollideWorldBounds(true);
+        player = this.physics.add.sprite(200, 200, 'ash_walk', 1).setCollideWorldBounds(true);
         this.cameras.main.setBounds(0, 0, 544, 432);
         this.physics.world.setBounds(0, 0, 544, 432);
         this.cameras.main.zoom = 3;
@@ -77,7 +81,10 @@ class Game extends Phaser.Scene {
          */
         player.walkPower = 0.8;
         player.runPower = 1.3;
+        player.walkRidePower = 1.5;
+        player.runRidePower = 2;
         player.speedRate = player.walkPower;
+        player.movement = "walk";
 
         /**
          * MOVE
@@ -97,43 +104,124 @@ class Game extends Phaser.Scene {
          */
 
         this.input.keyboard.on('keydown_SHIFT', function () {
-            player.speedRate = player.runPower;
+            if (toggleBike) {
+                player.speedRate = player.runRidePower;
+            } else {
+                player.speedRate = player.runPower;
+                player.movement = "run";
+            }
         });
 
         this.input.keyboard.on('keyup_SHIFT', function () {
-           player.speedRate = player.walkPower;
+            if (toggleBike) {
+                player.speedRate = player.walkRidePower;
+
+            } else {
+                player.speedRate = player.walkPower;
+                player.movement = "walk";
+            }
+        });
+
+        /**
+         * BIKE
+         */
+
+        this.input.keyboard.on('keydown_B', function () {
+            toggleBike = !toggleBike;
+            if (toggleBike) {
+                player.movement = "ride";
+                player.speedRate = player.walkRidePower;
+            } else {
+                player.movement = "walk";
+                player.speedRate = player.walkPower;
+            }
         });
 
         /**
          * ANIMATION
          */
+
+        /** ash_walk */
         this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('ash', { start:9, end: 11}),
-            frameRate: 10,
+            key: 'down_walk',
+            frames: this.anims.generateFrameNumbers('ash_walk', {start: 0, end: 2}),
+            frameRate: 8,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'up_walk',
+            frames: this.anims.generateFrameNumbers('ash_walk', {start: 3, end: 5}),
+            frameRate: 8,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'right_walk',
+            frames: this.anims.generateFrameNumbers('ash_walk', {start: 6, end: 8}),
+            frameRate: 8,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'left_walk',
+            frames: this.anims.generateFrameNumbers('ash_walk', {start: 9, end: 11}),
+            frameRate: 8,
             repeat: -1
         });
 
+        /** ash_run */
         this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('ash', { start: 6, end: 8}),
+            key: 'down_run',
+            frames: this.anims.generateFrameNumbers('ash_run', {start: 0, end: 3}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'up_run',
+            frames: this.anims.generateFrameNumbers('ash_run', {start: 4, end: 7}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'right_run',
+            frames: this.anims.generateFrameNumbers('ash_run', {start: 8, end: 11}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'left_run',
+            frames: this.anims.generateFrameNumbers('ash_run', {start: 12, end: 15}),
             frameRate: 10,
             repeat: -1,
         });
 
+        /** ride */
         this.anims.create({
-            key: 'up',
-            frames: this.anims.generateFrameNumbers('ash', { start: 3, end: 5}),
+            key: 'down_ride',
+            frames: this.anims.generateFrameNumbers('ash_ride', {start: 0, end: 2}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'up_ride',
+            frames: this.anims.generateFrameNumbers('ash_ride', {start: 3, end: 5}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'right_ride',
+            frames: this.anims.generateFrameNumbers('ash_ride', {start: 6, end: 8}),
+            frameRate: 10,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'left_ride',
+            frames: this.anims.generateFrameNumbers('ash_ride', {start: 9, end: 11}),
             frameRate: 10,
             repeat: -1,
         });
 
-        this.anims.create({
-            key: 'down',
-            frames: this.anims.generateFrameNumbers('ash', { start: 0, end: 2}),
-            frameRate: 10,
-            repeat: -1,
-        });
     }
 
     update(time, delta) {
@@ -141,50 +229,36 @@ class Game extends Phaser.Scene {
         player.body.setVelocity(0);
 
         // Horizontal movement
-        if (cursors.left.isDown)
-        {
+        if (cursors.left.isDown) {
             player.body.setVelocityX(-80 * player.speedRate);
+            playAnim(player, "left", player.movement);
+
         }
-        else if (cursors.right.isDown)
-        {
+        else if (cursors.right.isDown) {
             player.body.setVelocityX(80 * player.speedRate);
+            playAnim(player, "right", player.movement);
         }
 
         // Vertical movement
-        else if (cursors.up.isDown)
-        {
-            player.body.setVelocityY(-80 * player.speedRate);
-        }
-        else if (cursors.down.isDown)
-        {
-            player.body.setVelocityY(80 * player.speedRate);
-        }
-
-        if (cursors.left.isDown) {
-            player.anims.play('left', true);
-        }
-        else if (cursors.right.isDown) {
-            player.anims.play('right', true);
-        }
         else if (cursors.up.isDown) {
-            player.anims.play('up', true);
+            player.body.setVelocityY(-80 * player.speedRate);
+            playAnim(player, "up", player.movement);
+
         }
         else if (cursors.down.isDown) {
-            player.anims.play('down', true);
-        }
-        else {
+            player.body.setVelocityY(80 * player.speedRate);
+            playAnim(player, "down", player.movement);
+        } else {
             player.anims.stop();
         }
 
     }
 }
 
-function drawDebug ()
-{
+function drawDebug() {
     debugGraphics.clear();
 
-    if (showDebug)
-    {
+    if (showDebug) {
         // Pass in null for any of the style options to disable drawing that component
         map.renderDebug(debugGraphics, {
             tileColor: null, // Non-colliding tiles
@@ -193,4 +267,8 @@ function drawDebug ()
         });
     }
 
+}
+
+function playAnim(target, direction, name) {
+    target.anims.play(direction + "_" + name, true);
 }
