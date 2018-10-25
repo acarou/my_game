@@ -142,85 +142,24 @@ class Game extends Phaser.Scene {
          */
 
         /** ash_walk */
-        this.anims.create({
-            key: 'down_walk',
-            frames: this.anims.generateFrameNumbers('ash_walk', {start: 0, end: 2}),
-            frameRate: 8,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'up_walk',
-            frames: this.anims.generateFrameNumbers('ash_walk', {start: 3, end: 5}),
-            frameRate: 8,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'right_walk',
-            frames: this.anims.generateFrameNumbers('ash_walk', {start: 6, end: 8}),
-            frameRate: 8,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'left_walk',
-            frames: this.anims.generateFrameNumbers('ash_walk', {start: 9, end: 11}),
-            frameRate: 8,
-            repeat: -1
-        });
+        createAnim(this,'ash_walk', 'down_walk', 8, 0, 2);
+        createAnim(this,'ash_walk', 'up_walk', 8, 3, 5);
+        createAnim(this,'ash_walk', 'right_walk', 8, 6, 8);
+        createAnim(this,'ash_walk', 'left_walk', 8, 9, 11);
 
         /** ash_run */
-        this.anims.create({
-            key: 'down_run',
-            frames: this.anims.generateFrameNumbers('ash_run', {start: 0, end: 3}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'up_run',
-            frames: this.anims.generateFrameNumbers('ash_run', {start: 4, end: 7}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'right_run',
-            frames: this.anims.generateFrameNumbers('ash_run', {start: 8, end: 11}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'left_run',
-            frames: this.anims.generateFrameNumbers('ash_run', {start: 12, end: 15}),
-            frameRate: 10,
-            repeat: -1,
-        });
+
+        createAnim(this,'ash_run', 'down_run', 10, 0, 3);
+        createAnim(this,'ash_run', 'up_run', 10, 4, 7);
+        createAnim(this,'ash_run', 'right_run', 10, 8, 11);
+        createAnim(this,'ash_run', 'left_run', 10, 12, 15);
 
         /** ride */
-        this.anims.create({
-            key: 'down_ride',
-            frames: this.anims.generateFrameNumbers('ash_ride', {start: 0, end: 2}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'up_ride',
-            frames: this.anims.generateFrameNumbers('ash_ride', {start: 3, end: 5}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'right_ride',
-            frames: this.anims.generateFrameNumbers('ash_ride', {start: 6, end: 8}),
-            frameRate: 10,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'left_ride',
-            frames: this.anims.generateFrameNumbers('ash_ride', {start: 9, end: 11}),
-            frameRate: 10,
-            repeat: -1,
-        });
+        createAnim(this,'ash_ride', 'down_ride', 10, 0, 2);
+        createAnim(this,'ash_ride', 'up_ride', 10, 3, 5);
+        createAnim(this,'ash_ride', 'right_ride', 10, 6, 8);
+        createAnim(this,'ash_ride', 'left_ride', 10, 9, 11);
+
 
     }
 
@@ -271,4 +210,13 @@ function drawDebug() {
 
 function playAnim(target, direction, name) {
     target.anims.play(direction + "_" + name, true);
+}
+
+function createAnim(scope,spriteName, keyName, frameRate = 10, start, end) {
+    scope.anims.create({
+        key: keyName,
+        frames: scope.anims.generateFrameNumbers(spriteName, {start: start, end: end}),
+        frameRate: frameRate,
+        repeat: -1,
+    });
 }
