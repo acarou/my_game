@@ -85,6 +85,7 @@ class Game extends Phaser.Scene {
         player.runRidePower = 2;
         player.speedRate = player.walkPower;
         player.movement = "walk";
+        player.direction = "down";
 
         /**
          * MOVE
@@ -131,9 +132,11 @@ class Game extends Phaser.Scene {
             if (toggleBike) {
                 player.movement = "ride";
                 player.speedRate = player.walkRidePower;
+                playAnim(player, player.direction, player.movement);
             } else {
                 player.movement = "walk";
                 player.speedRate = player.walkPower;
+                playAnim(player, player.direction, player.movement);
             }
         });
 
@@ -142,23 +145,23 @@ class Game extends Phaser.Scene {
          */
 
         /** ash_walk */
-        createAnim(this,'ash_walk', 'down_walk', 8, 0, 2);
-        createAnim(this,'ash_walk', 'up_walk', 8, 3, 5);
-        createAnim(this,'ash_walk', 'right_walk', 8, 6, 8);
-        createAnim(this,'ash_walk', 'left_walk', 8, 9, 11);
+        createAnim(this, 'ash_walk', 'down_walk', 8, 0, 2);
+        createAnim(this, 'ash_walk', 'up_walk', 8, 3, 5);
+        createAnim(this, 'ash_walk', 'right_walk', 8, 6, 8);
+        createAnim(this, 'ash_walk', 'left_walk', 8, 9, 11);
 
         /** ash_run */
 
-        createAnim(this,'ash_run', 'down_run', 10, 0, 3);
-        createAnim(this,'ash_run', 'up_run', 10, 4, 7);
-        createAnim(this,'ash_run', 'right_run', 10, 8, 11);
-        createAnim(this,'ash_run', 'left_run', 10, 12, 15);
+        createAnim(this, 'ash_run', 'down_run', 10, 0, 3);
+        createAnim(this, 'ash_run', 'up_run', 10, 4, 7);
+        createAnim(this, 'ash_run', 'right_run', 10, 8, 11);
+        createAnim(this, 'ash_run', 'left_run', 10, 12, 15);
 
         /** ride */
-        createAnim(this,'ash_ride', 'down_ride', 10, 0, 2);
-        createAnim(this,'ash_ride', 'up_ride', 10, 3, 5);
-        createAnim(this,'ash_ride', 'right_ride', 10, 6, 8);
-        createAnim(this,'ash_ride', 'left_ride', 10, 9, 11);
+        createAnim(this, 'ash_ride', 'down_ride', 10, 0, 2);
+        createAnim(this, 'ash_ride', 'up_ride', 10, 3, 5);
+        createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
+        createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
 
     }
@@ -210,9 +213,10 @@ function drawDebug() {
 
 function playAnim(target, direction, name) {
     target.anims.play(direction + "_" + name, true);
+    player.direction = direction;
 }
 
-function createAnim(scope,spriteName, keyName, frameRate = 10, start, end) {
+function createAnim(scope, spriteName, keyName, frameRate = 10, start, end) {
     scope.anims.create({
         key: keyName,
         frames: scope.anims.generateFrameNumbers(spriteName, {start: start, end: end}),
