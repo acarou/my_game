@@ -11,7 +11,7 @@ class PalletTown extends Phaser.Scene {
 
     preload() {
         this.load.image('pallet-town-tiles', 'assets/images/Pallet_tiles.png');
-        this.load.tilemapCSV('pallet-map', 'assets/images/Pallet_map.csv');
+        this.load.tilemapTiledJSON('pallet-map', 'assets/images/Pallet_map.json');
         this.load.image('pokeball', 'assets/images/pokeball.png');
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
         this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
@@ -31,27 +31,12 @@ class PalletTown extends Phaser.Scene {
         var music = this.sound.add('pallet-town-sound');
         music.play();
 
-        map = this.make.tilemap({key: 'pallet-map', tileWidth: 16, tileHeight: 16});
+        map = this.make.tilemap({key: 'pallet-map'});
 
-        var tileset = map.addTilesetImage('pallet-town-tiles');
-        var layer = map.createStaticLayer(0, tileset, 0, 0);
+        var tileset = map.addTilesetImage('Pallet_bank.png', "pallet-town-tiles");
+        var layer = map.createStaticLayer("ShoeBox Tile Grab", tileset, 0, 0);
 
-        map.setCollisionBetween(0, 5);
-        map.setCollisionBetween(7, 13);
-        map.setCollisionBetween(16, 19);
-        map.setCollisionBetween(38, 40);
-        map.setCollisionBetween(43, 45);
-        map.setCollisionBetween(48, 52);
-        map.setCollisionBetween(54, 59);
-        map.setCollisionBetween(68, 71);
-        map.setCollisionBetween(75, 86);
-        map.setCollisionBetween(89, 95);
-        map.setCollisionBetween(108, 108);
-        map.setCollisionBetween(115, 117);
-        map.setCollisionBetween(119, 120);
-        map.setCollisionBetween(124, 126);
-        map.setCollisionBetween(138, 142);
-        map.setCollisionBetween(144, 144);
+        map.setCollisionByProperty({collides: true});
 
 
         //this.add.image(0,0,'pallet-town').setOrigin(0);
