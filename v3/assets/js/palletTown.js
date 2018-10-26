@@ -4,9 +4,9 @@ var debugText, showDebug, debugGraphics;
 
 var toggleBike;
 
-class Game extends Phaser.Scene {
+class PalletTown extends Phaser.Scene {
     constructor() {
-        super({key: "Game"});
+        super({key: "PalletTown"});
     }
 
     preload() {
@@ -16,6 +16,7 @@ class Game extends Phaser.Scene {
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
         this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
         this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
+        this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
     }
 
@@ -26,6 +27,9 @@ class Game extends Phaser.Scene {
         /**
          * Main
          */
+
+        var music = this.sound.add('pallet-town-sound');
+        music.play();
 
         map = this.make.tilemap({key: 'pallet-map', tileWidth: 16, tileHeight: 16});
 
