@@ -1,8 +1,8 @@
-var player, moveKeys, cursors, map, pokeball;
-
-var debugText, showDebug, debugGraphics;
+var player, map, pokeball, moveKeys, cursors;
 
 var toggleBike;
+
+var debugText, showDebug, debugGraphics;
 
 class PalletTown extends Phaser.Scene {
     constructor() {
@@ -10,13 +10,17 @@ class PalletTown extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('pallet-town-tiles', 'assets/images/Pallet_tiles.png');
-        this.load.tilemapTiledJSON('pallet-map', 'assets/images/Pallet_map.json');
+
+        this.load.image('tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
+        this.load.tilemapTiledJSON('map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
         this.load.image('pokeball', 'assets/images/pokeball.png');
+
+        this.load.audio('sound', 'assets/sounds/PalletTown.mp3');
+
+
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
         this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
         this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
-        this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
     }
 
@@ -28,19 +32,22 @@ class PalletTown extends Phaser.Scene {
          * Main
          */
 
-        var music = this.sound.add('pallet-town-sound');
+        var music = this.sound.add('sound');
         music.play();
 
-        map = this.make.tilemap({key: 'pallet-map'});
 
-        var tileset = map.addTilesetImage('Pallet_bank.png', "pallet-town-tiles");
-        var layer = map.createStaticLayer("ShoeBox Tile Grab", tileset, 0, 0);
+
+        map = this.make.tilemap({key: 'map'});
+
+        var tileset = map.addTilesetImage('Kanto_Pallet_Town_Map_bank.png', "tiles");
+
+        var layer = map.createStaticLayer("World", tileset, 0, 0);
 
         map.setCollisionByProperty({collides: true});
 
-
-        //this.add.image(0,0,'pallet-town').setOrigin(0);
         player = this.physics.add.sprite(200, 200, 'ash_walk', 1).setCollideWorldBounds(true);
+
+
         this.cameras.main.setBounds(0, 0, 544, 432);
         this.physics.world.setBounds(0, 0, 544, 432);
         this.cameras.main.zoom = 3;
@@ -64,6 +71,7 @@ class PalletTown extends Phaser.Scene {
             showDebug = !showDebug;
             drawDebug();
         });
+
 
         /**
          * Player define
@@ -119,6 +127,8 @@ class PalletTown extends Phaser.Scene {
         this.input.keyboard.on('keydown_B', function () {
             toggleBike = !toggleBike;
             if (toggleBike) {
+                console.log('toto');
+
                 player.movement = "ride";
                 player.speedRate = player.walkRidePower;
                 playAnim(player, player.direction, player.movement);
@@ -151,12 +161,9 @@ class PalletTown extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'up_ride', 10, 3, 5);
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
-
-
     }
 
     update(time, delta) {
-
         player.body.setVelocity(0);
 
         // Horizontal movement
@@ -182,6 +189,7 @@ class PalletTown extends Phaser.Scene {
         } else {
             player.anims.stop();
         }
+
 
     }
 }
