@@ -6,10 +6,10 @@ var config = {
         default: 'arcade',
         arcade:  {
             gravity: 0,
-            debug: false,
+            debug: true,
         }
     },
-    scene: [ PalletTown ]
+    scene: [  PalletTown, Route1  ]
 };
 
 var game = new Phaser.Game(config);
