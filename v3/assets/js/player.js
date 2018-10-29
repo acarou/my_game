@@ -1,81 +1,23 @@
-var player, map, pokeball, moveKeys, cursors;
+var player, moveKeys, cursors;
 
 var toggleBike;
 
-var debugText, showDebug, debugGraphics;
-
-class PalletTown extends Phaser.Scene {
+class Player extends Phaser.Scene {
     constructor() {
-        super({key: "PalletTown"});
+        super({
+            key: "Player",
+            active: true
+        })
     }
 
     preload() {
-
-        this.load.image('tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
-        this.load.tilemapTiledJSON('map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
-        this.load.image('pokeball', 'assets/images/pokeball.png');
-
-        this.load.audio('sound', 'assets/sounds/PalletTown.mp3');
-
-
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
         this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
         this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
-
     }
 
     create() {
-
-        debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
-
-        /**
-         * Main
-         */
-
-        var music = this.sound.add('sound');
-        music.play();
-
-
-
-        map = this.make.tilemap({key: 'map'});
-
-        var tileset = map.addTilesetImage('Kanto_Pallet_Town_Map_bank.png', "tiles");
-
-        var layer = map.createStaticLayer("World", tileset, 0, 0);
-
-        map.setCollisionByProperty({collides: true});
-
-        var spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
-
-        map.route1 = map.findObject("Objects", obj => obj.name === "Route 1");
-
-
-        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
-
-
-        this.cameras.main.setBounds(0, 0, 544, 432);
-        this.physics.world.setBounds(0, 0, 544, 432);
-        this.cameras.main.zoom = 3;
-        this.cameras.main.startFollow(player);
-
-        this.physics.add.collider(player, layer);
-        /**
-         * pokeball
-         */
-        pokeball = this.physics.add.group();
-
-        this.physics.add.collider(player, pokeball);
-
-        /**
-         * Debug
-         */
-        debugGraphics = this.add.graphics();
-
-        this.input.keyboard.on('keydown_C', function (event) {
-            showDebug = !showDebug;
-            drawDebug();
-        });
-
+        player = this.physics.add.sprite(200, 200, 'ash_walk', 1).setCollideWorldBounds(true);
 
         /**
          * Player define
@@ -165,13 +107,10 @@ class PalletTown extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'up_ride', 10, 3, 5);
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
+
     }
 
-    update(time, delta) {
-
-        if (player.x >= map.route1.x && player.x < map.route1.x+map.route1.width && player.y >= map.route1.y && player.y < map.route1.y+map.route1.height) {
-            this.scene.start('Route1');
-        }
+    update() {
 
         player.body.setVelocity(0);
 
@@ -199,22 +138,7 @@ class PalletTown extends Phaser.Scene {
             player.anims.stop();
         }
 
-
     }
-}
-
-function drawDebug() {
-    debugGraphics.clear();
-
-    if (showDebug) {
-        // Pass in null for any of the style options to disable drawing that component
-        map.renderDebug(debugGraphics, {
-            tileColor: null, // Non-colliding tiles
-            collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
-            faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
-        });
-    }
-
 }
 
 function playAnim(target, direction, name) {

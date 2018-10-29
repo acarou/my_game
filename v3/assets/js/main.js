@@ -9,7 +9,7 @@ var config = {
             debug: true,
         }
     },
-    scene: [  PalletTown  ]
+    scene: [  PalletTown, Route1  ]
 };
 
 var game = new Phaser.Game(config);
