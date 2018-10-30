@@ -2,6 +2,8 @@ var player, map, pokeball, moveKeys, cursors;
 
 var toggleBike;
 
+var npc;
+
 var debugText, showDebug, debugGraphics;
 
 class PalletTown extends Phaser.Scene {
@@ -22,6 +24,8 @@ class PalletTown extends Phaser.Scene {
         this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
         this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
 
+        this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
+
     }
 
     create() {
@@ -34,7 +38,6 @@ class PalletTown extends Phaser.Scene {
 
         var music = this.sound.add('sound');
         music.play();
-
 
 
         map = this.make.tilemap({key: 'map'});
@@ -53,12 +56,12 @@ class PalletTown extends Phaser.Scene {
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
 
 
-        this.cameras.main.setBounds(0, 0, 544, 432);
-        this.physics.world.setBounds(0, 0, 544, 432);
+        this.cameras.main.setBounds(0, 0, 384, 320);
+        this.physics.world.setBounds(0, 0, 384, 320);
         this.cameras.main.zoom = 3;
         this.cameras.main.startFollow(player);
 
-        this.physics.add.collider(player, layer);
+        this.physics.add.collider(player, layer, playerCollision);
         /**
          * pokeball
          */
@@ -165,11 +168,33 @@ class PalletTown extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'up_ride', 10, 3, 5);
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
+
+        /**
+         * NPC
+         */
+
+        npc = this.physics.add.sprite(50, 160, 'npc').setCollideWorldBounds(true).setImmovable(true);
+        npc.collide = false;
+
+        var tween = this.tweens.add({
+            targets: npc,
+            x: 200,
+            delay: 1000,
+            duration: 3000,
+            yoyo: true,
+            repeat: true,
+            hold: 2000,
+        });
+
+        this.physics.add.collider(player, npc, npcCollision, null, tween);
+        this.physics.add.collider(npc, layer);
+
+
     }
 
     update(time, delta) {
 
-        if (player.x >= map.route1.x && player.x < map.route1.x+map.route1.width && player.y >= map.route1.y && player.y < map.route1.y+map.route1.height) {
+        if (player.x >= map.route1.x && player.x < map.route1.x + map.route1.width && player.y >= map.route1.y && player.y < map.route1.y + map.route1.height) {
             this.scene.start('Route1');
         }
 
@@ -229,4 +254,19 @@ function createAnim(scope, spriteName, keyName, frameRate = 10, start, end) {
         frameRate: frameRate,
         repeat: -1,
     });
+}
+
+async function npcCollision() {
+    var tween = this;
+    playerCollision();
+    this.pause();
+    setTimeout(function () {
+        tween.resume();
+        console.log('toto');
+    }, 1000);
+
+}
+
+function playerCollision() {
+    player.anims.stop();
 }
