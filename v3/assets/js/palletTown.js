@@ -13,11 +13,11 @@ class PalletTown extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
-        this.load.tilemapTiledJSON('map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
+        this.load.image('pallet-town-tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
         this.load.image('pokeball', 'assets/images/pokeball.png');
 
-        this.load.audio('sound', 'assets/sounds/PalletTown.mp3');
+        this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
 
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
@@ -30,27 +30,38 @@ class PalletTown extends Phaser.Scene {
 
     create() {
 
+
         debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
 
         /**
          * Main
          */
 
-        var music = this.sound.add('sound');
+        var music = this.sound.add('pallet-town-sound');
         music.play();
 
 
-        map = this.make.tilemap({key: 'map'});
+        map = this.make.tilemap({key: 'pallet-town-map'});
 
-        var tileset = map.addTilesetImage('Kanto_Pallet_Town_Map_bank.png', "tiles");
+        var tileset = map.addTilesetImage('Kanto_Pallet_Town_Map_bank.png', "pallet-town-tiles");
 
         var layer = map.createStaticLayer("World", tileset, 0, 0);
 
         map.setCollisionByProperty({collides: true});
-
-        var spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+        var spawnPoint;
+        if (first === true) {
+            spawnPoint = map.findObject("Objects", obj => obj.name === "First Spawn Point");
+            first = false;
+        } else {
+            spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+        }
 
         map.route1 = map.findObject("Objects", obj => obj.name === "Route 1");
+        map.sign = map.filterObjects("Objects", obj => obj.name === "Sign");
+
+        map.letterbox = map.filterObjects("Objects", obj => obj.name === "Letterbox");
+
+
 
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
@@ -79,6 +90,25 @@ class PalletTown extends Phaser.Scene {
             drawDebug();
         });
 
+        this.input.keyboard.on('keydown_W', function (event) {
+            if ( player.direction !== "up") {
+                return false;
+            }
+            map.letterbox.forEach(function (letterbox) {
+                if (player.x >= letterbox.x && player.x < letterbox.x +20 && player.y >= letterbox.y && player.y < letterbox.y+30) {
+                    console.log(letterbox.properties[0].value);
+                }
+            });
+
+            map.sign.forEach(function (sign) {
+                if (player.x >= sign.x && player.x < sign.x +20 && player.y >= sign.y && player.y < sign.y+30) {
+                    console.log(sign.properties[0].value);
+                }
+            })
+
+
+        });
+
 
         /**
          * Player define
@@ -90,6 +120,8 @@ class PalletTown extends Phaser.Scene {
         player.speedRate = player.walkPower;
         player.movement = "walk";
         player.direction = "down";
+        toggleBike = false;
+
 
         /**
          * MOVE
@@ -134,7 +166,6 @@ class PalletTown extends Phaser.Scene {
         this.input.keyboard.on('keydown_B', function () {
             toggleBike = !toggleBike;
             if (toggleBike) {
-                console.log('toto');
 
                 player.movement = "ride";
                 player.speedRate = player.walkRidePower;
@@ -194,6 +225,8 @@ class PalletTown extends Phaser.Scene {
 
     update(time, delta) {
 
+
+
         if (player.x >= map.route1.x && player.x < map.route1.x + map.route1.width && player.y >= map.route1.y && player.y < map.route1.y + map.route1.height) {
             this.scene.start('Route1');
         }
@@ -228,6 +261,10 @@ class PalletTown extends Phaser.Scene {
     }
 }
 
+function findPlayer() {
+
+}
+
 function drawDebug() {
     debugGraphics.clear();
 
@@ -256,15 +293,9 @@ function createAnim(scope, spriteName, keyName, frameRate = 10, start, end) {
     });
 }
 
-async function npcCollision() {
-    var tween = this;
+function npcCollision() {
     playerCollision();
     this.pause();
-    setTimeout(function () {
-        tween.resume();
-        console.log('toto');
-    }, 1000);
-
 }
 
 function playerCollision() {

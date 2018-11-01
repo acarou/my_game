@@ -11,5 +11,5 @@ var config = {
     },
     scene: [  PalletTown, Route1  ]
 };
-
+var first = true;
 var game = new Phaser.Game(config);
