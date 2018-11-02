@@ -1,10 +1,8 @@
-var player, map, pokeball, moveKeys, cursors;
+var player, map, pokeball, moveKeys, cursors,
 
-var toggleBike;
+ npc,
 
-var npc;
-
-var debugText, showDebug, debugGraphics;
+ debugText, showDebug, debugGraphics;
 
 class PalletTown extends Phaser.Scene {
     constructor() {
@@ -30,8 +28,10 @@ class PalletTown extends Phaser.Scene {
 
     create() {
 
+        var text = this.add.text(300, 350, '', { fontFamily: 'Arial', fontSize: 12, color: '#000000' }).setDepth(1).setScrollFactor(0);
 
-        debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
+
+        debugText = this.add.text(280, 200, "x 0 y 0", {fontFamily: 'Arial', fontSize: 12, color: '#ffff00'}).setDepth(1).setVisible(false).setScrollFactor(0);
 
         /**
          * Main
@@ -87,8 +87,18 @@ class PalletTown extends Phaser.Scene {
 
         this.input.keyboard.on('keydown_C', function (event) {
             showDebug = !showDebug;
+
+            if (showDebug) {
+                debugText.setVisible(true);
+            } else {
+                debugText.setVisible(false);
+            }
             drawDebug();
         });
+
+        /**
+         * Action
+         */
 
         this.input.keyboard.on('keydown_W', function (event) {
             if ( player.direction !== "up") {
@@ -96,15 +106,24 @@ class PalletTown extends Phaser.Scene {
             }
             map.letterbox.forEach(function (letterbox) {
                 if (player.x >= letterbox.x && player.x < letterbox.x +20 && player.y >= letterbox.y && player.y < letterbox.y+30) {
-                    console.log(letterbox.properties[0].value);
+                    text.text = letterbox.properties[0].value;
+                    player.setActive(false).setMaxVelocity(0,0);
                 }
             });
 
             map.sign.forEach(function (sign) {
                 if (player.x >= sign.x && player.x < sign.x +20 && player.y >= sign.y && player.y < sign.y+30) {
-                    console.log(sign.properties[0].value);
+                    text.text = sign.properties[0].value;
+                    player.setActive(false).setMaxVelocity(0,0);
                 }
-            })
+            });
+
+
+
+            setTimeout(function () {
+                text.text = "";
+                player.setActive(true).setMaxVelocity(999,999);
+            },2000)
 
 
         });
@@ -120,7 +139,7 @@ class PalletTown extends Phaser.Scene {
         player.speedRate = player.walkPower;
         player.movement = "walk";
         player.direction = "down";
-        toggleBike = false;
+        player.toggleBike = false;
 
 
         /**
@@ -141,7 +160,7 @@ class PalletTown extends Phaser.Scene {
          */
 
         this.input.keyboard.on('keydown_SHIFT', function () {
-            if (toggleBike) {
+            if (player.toggleBike) {
                 player.speedRate = player.runRidePower;
             } else {
                 player.speedRate = player.runPower;
@@ -150,7 +169,7 @@ class PalletTown extends Phaser.Scene {
         });
 
         this.input.keyboard.on('keyup_SHIFT', function () {
-            if (toggleBike) {
+            if (player.toggleBike) {
                 player.speedRate = player.walkRidePower;
 
             } else {
@@ -164,8 +183,8 @@ class PalletTown extends Phaser.Scene {
          */
 
         this.input.keyboard.on('keydown_B', function () {
-            toggleBike = !toggleBike;
-            if (toggleBike) {
+            player.toggleBike = !player.toggleBike;
+            if (player.toggleBike) {
 
                 player.movement = "ride";
                 player.speedRate = player.walkRidePower;
@@ -220,13 +239,12 @@ class PalletTown extends Phaser.Scene {
         this.physics.add.collider(player, npc, npcCollision, null, tween);
         this.physics.add.collider(npc, layer);
 
-
     }
 
     update(time, delta) {
 
 
-
+        debugText.text = 'x : '+Math.round(player.x)+' y :'+Math.round(player.y);
         if (player.x >= map.route1.x && player.x < map.route1.x + map.route1.width && player.y >= map.route1.y && player.y < map.route1.y + map.route1.height) {
             this.scene.start('Route1');
         }
@@ -296,6 +314,14 @@ function createAnim(scope, spriteName, keyName, frameRate = 10, start, end) {
 function npcCollision() {
     playerCollision();
     this.pause();
+    if (npc.collide === false) {
+        var pn = this;
+        npc.collide = true;
+        setTimeout(function () {
+            pn.resume();
+            npc.collide = false;
+        },1000)
+    }
 }
 
 function playerCollision() {
