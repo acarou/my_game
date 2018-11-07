@@ -1,4 +1,4 @@
-var player, map, moveKeys, cursors;
+var map, moveKeys, cursors;
 
 var toggleBike;
 
@@ -7,22 +7,7 @@ var debugText, showDebug, debugGraphics;
 
 class Route1 extends Phaser.Scene {
     constructor() {
-        super({ key: "Route1"});
-    }
-
-    preload() {
-        this.load.image('route1-tiles', 'assets/images/background/Kanto_Route_1_Map_bank.png');
-        this.load.tilemapTiledJSON('route1-map', 'assets/images/background/Kanto_Route_1_Map_map.json');
-
-        this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
-
-
-        this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
-        this.load.spritesheet('ash_run', 'assets/images/ash/run.png', {frameWidth: 16, frameHeight: 19});
-        this.load.spritesheet('ash_ride', 'assets/images/ash/ride.png', {frameWidth: 20, frameHeight: 22});
-
-        this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
-
+        super({key: "Route1"});
     }
 
     create() {
@@ -137,7 +122,6 @@ class Route1 extends Phaser.Scene {
                 playAnim(player, player.direction, player.movement);
             }
         });
-
 
 
     }

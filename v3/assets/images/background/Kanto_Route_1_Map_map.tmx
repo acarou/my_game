@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="48" height="80" tilewidth="8" tileheight="8" infinite="0" nextlayerid="3" nextobjectid="17">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="80" tilewidth="8" tileheight="8" infinite="0" nextobjectid="29">
  <tileset firstgid="1" name="Kanto_Route_1_Map_bank.png" tilewidth="8" tileheight="8" tilecount="110" columns="22">
   <image source="Kanto_Route_1_Map_bank.png" width="176" height="40"/>
   <tile id="0">
@@ -1462,7 +1462,7 @@
    </properties>
   </tile>
  </tileset>
- <layer id="1" name="World" width="48" height="80" locked="1">
+ <layer name="World" width="48" height="80" locked="1">
   <data>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -5306,11 +5306,26 @@
    <tile gid="32"/>
   </data>
  </layer>
- <objectgroup id="2" name="Objects">
+ <objectgroup name="Objects">
   <object id="1" name="Spawn Point" x="208" y="600">
    <point/>
   </object>
   <object id="2" name="Pallet Town" x="192" y="624" width="32" height="16"/>
   <object id="3" name="Viridian City" x="159.938" y="0" width="64.0625" height="24"/>
+  <object id="17" name="Sign" x="144" y="496" width="16" height="16">
+   <properties>
+    <property name="text" value=""/>
+   </properties>
+  </object>
+  <object id="18" name="Jump" x="32" y="504" width="64" height="8"/>
+  <object id="19" name="Jump" x="160" y="504" width="192" height="8"/>
+  <object id="20" name="Jump" x="176" y="328" width="176" height="8"/>
+  <object id="21" name="Jump" x="288" y="424" width="64" height="8"/>
+  <object id="23" name="Jump" x="64" y="248" width="96" height="8"/>
+  <object id="24" name="Jump" x="80" y="328" width="64" height="8"/>
+  <object id="25" name="Jump" x="32" y="328" width="32" height="8"/>
+  <object id="26" name="Jump" x="32" y="168" width="96" height="8"/>
+  <object id="27" name="Jump" x="32" y="88" width="96" height="8"/>
+  <object id="28" name="Jump" x="160" y="88" width="96" height="8"/>
  </objectgroup>
 </map>
