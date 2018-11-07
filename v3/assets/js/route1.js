@@ -31,8 +31,14 @@ class Route1 extends Phaser.Scene {
 
         var spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 
-        map.palletTown = map.findObject("Objects", obj => obj.name === "Pallet Town");
-        map.viridianCity = map.findObject("Objects", obj => obj.name === "Viridian City");
+        map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
+
+        map.jumps = map.filterObjects("Objects", obj => obj.name === "Jumps");
+
+        map.grasses = map.filterObjects("Objects", obj => obj.name === "Grasses");
+
+        map.sign = map.filterObjects("Objects", obj => obj.name === "Sign");
+
 
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
@@ -111,7 +117,6 @@ class Route1 extends Phaser.Scene {
         this.input.keyboard.on('keydown_B', function () {
             toggleBike = !toggleBike;
             if (toggleBike) {
-                console.log('toto');
 
                 player.movement = "ride";
                 player.speedRate = player.walkRidePower;
@@ -123,13 +128,58 @@ class Route1 extends Phaser.Scene {
             }
         });
 
+        this.input.keyboard.on('keydown_W', function (event) {
+            var scene = this;
+            if (player.direction !== "up") {
+                return false;
+            }
+
+            map.sign.forEach(function (sign) {
+                if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
+                    text.text = sign.properties.text;
+                    scene.scene.pause();
+
+                }
+            });
+            setTimeout(function () {
+                text.text = "";
+                scene.scene.resume();
+            }, 2000);
+        },this);
+
 
     }
 
-    update() {
+    update(time, delta) {
 
-        if (player.x >= map.palletTown.x && player.x < map.palletTown.x + map.palletTown.width && player.y >= map.palletTown.y && player.y < map.palletTown.y + map.palletTown.height) {
-            this.scene.start('PalletTown');
+        if (player.body.speed > 0) {
+            map.zones.forEach(function (zone) {
+                if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
+                    this.scene.start(zone.properties.name);
+                }
+            }, this);
+
+            map.grasses.forEach(function (grass) {
+                if (player.x >= grass.x && player.x < grass.x + grass.width && player.y >= grass.y && player.y < grass.y + grass.height) {
+                        if (Math.floor(Math.random() * 100)+1 === 50) {
+                            console.log('FIGHT')
+                        }
+                        return true;
+
+                }
+
+            });
+
+
+            if (player.direction === "down") {
+
+                map.jumps.forEach(function (jump) {
+                    if (player.x >= jump.x && player.x < jump.x + jump.width && player.y >= jump.y - 1 && player.y < jump.y + jump.height) {
+                        player.y = player.y + 20;
+                        return true;
+                    }
+                });
+            }
         }
 
         player.body.setVelocity(0);

@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: 0,
-            debug: true,
+            debug: false,
         }
     },
     scene: [Preload, PalletTown, Route1]

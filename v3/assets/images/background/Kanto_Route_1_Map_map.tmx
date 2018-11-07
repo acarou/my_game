@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="80" tilewidth="8" tileheight="8" infinite="0" nextobjectid="29">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="80" tilewidth="8" tileheight="8" infinite="0" nextobjectid="64">
  <tileset firstgid="1" name="Kanto_Route_1_Map_bank.png" tilewidth="8" tileheight="8" tilecount="110" columns="22">
   <image source="Kanto_Route_1_Map_bank.png" width="176" height="40"/>
   <tile id="0">
@@ -5310,22 +5310,38 @@
   <object id="1" name="Spawn Point" x="208" y="600">
    <point/>
   </object>
-  <object id="2" name="Pallet Town" x="192" y="624" width="32" height="16"/>
-  <object id="3" name="Viridian City" x="159.938" y="0" width="64.0625" height="24"/>
   <object id="17" name="Sign" x="144" y="496" width="16" height="16">
    <properties>
-    <property name="text" value=""/>
+    <property name="text" value="Route 1 !"/>
    </properties>
   </object>
-  <object id="18" name="Jump" x="32" y="504" width="64" height="8"/>
-  <object id="19" name="Jump" x="160" y="504" width="192" height="8"/>
-  <object id="20" name="Jump" x="176" y="328" width="176" height="8"/>
-  <object id="21" name="Jump" x="288" y="424" width="64" height="8"/>
-  <object id="23" name="Jump" x="64" y="248" width="96" height="8"/>
-  <object id="24" name="Jump" x="80" y="328" width="64" height="8"/>
-  <object id="25" name="Jump" x="32" y="328" width="32" height="8"/>
-  <object id="26" name="Jump" x="32" y="168" width="96" height="8"/>
-  <object id="27" name="Jump" x="32" y="88" width="96" height="8"/>
-  <object id="28" name="Jump" x="160" y="88" width="96" height="8"/>
+  <object id="29" name="Zones" x="192" y="624" width="32" height="16">
+   <properties>
+    <property name="name" value="PalletTown"/>
+   </properties>
+  </object>
+  <object id="30" name="Zones" x="160" y="0" width="64" height="24">
+   <properties>
+    <property name="name" value="ViridianCity"/>
+   </properties>
+  </object>
+  <object id="42" name="Jumps" x="32" y="496" width="64" height="7.625"/>
+  <object id="43" name="Jumps" x="160" y="496" width="192" height="7.625"/>
+  <object id="44" name="Jumps" x="288" y="416" width="64" height="7.625"/>
+  <object id="45" name="Jumps" x="176" y="320" width="176" height="7.625"/>
+  <object id="46" name="Jumps" x="32" y="320" width="32" height="7.625"/>
+  <object id="47" name="Jumps" x="80" y="320" width="64" height="7.625"/>
+  <object id="48" name="Jumps" x="64" y="240" width="96" height="7.625"/>
+  <object id="49" name="Jumps" x="32" y="160" width="96" height="7.625"/>
+  <object id="50" name="Jumps" x="32" y="80" width="96" height="7.625"/>
+  <object id="51" name="Jumps" x="160" y="80" width="96" height="7.625"/>
+  <object id="55" name="Grasses" x="32" y="544" width="112" height="32"/>
+  <object id="56" name="Grasses" x="64" y="512" width="112" height="32"/>
+  <object id="57" name="Grasses" x="192" y="384" width="96" height="80"/>
+  <object id="59" name="Grasses" x="256" y="208" width="96" height="80"/>
+  <object id="60" name="Grasses" x="160" y="96" width="192" height="80"/>
+  <object id="61" name="Grasses" x="272" y="512" width="80" height="32"/>
+  <object id="62" name="Grasses" x="240" y="544" width="80" height="32"/>
+  <object id="63" name="Grasses" x="192" y="560" width="32" height="64"/>
  </objectgroup>
 </map>

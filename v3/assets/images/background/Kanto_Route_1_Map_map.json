@@ -30,33 +30,11 @@
                 }, 
                 {
                  "height":16,
-                 "id":2,
-                 "name":"Pallet Town",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":192,
-                 "y":624
-                }, 
-                {
-                 "height":24,
-                 "id":3,
-                 "name":"Viridian City",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64.0625,
-                 "x":159.938,
-                 "y":0
-                }, 
-                {
-                 "height":16,
                  "id":17,
                  "name":"Sign",
                  "properties":
                     {
-                     "text":""
+                     "text":"Route 1 !"
                     },
                  "propertytypes":
                     {
@@ -70,114 +48,240 @@
                  "y":496
                 }, 
                 {
-                 "height":8,
-                 "id":18,
-                 "name":"Jump",
+                 "height":16,
+                 "id":29,
+                 "name":"Zones",
+                 "properties":
+                    {
+                     "name":"PalletTown"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":624
+                }, 
+                {
+                 "height":24,
+                 "id":30,
+                 "name":"Zones",
+                 "properties":
+                    {
+                     "name":"ViridianCity"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":160,
+                 "y":0
+                }, 
+                {
+                 "height":7.625,
+                 "id":42,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
                  "x":32,
-                 "y":504
+                 "y":496
                 }, 
                 {
-                 "height":8,
-                 "id":19,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":43,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":192,
                  "x":160,
-                 "y":504
+                 "y":496
                 }, 
                 {
-                 "height":8,
-                 "id":20,
-                 "name":"Jump",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":176,
-                 "x":176,
-                 "y":328
-                }, 
-                {
-                 "height":8,
-                 "id":21,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":44,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
                  "x":288,
-                 "y":424
+                 "y":416
                 }, 
                 {
-                 "height":8,
-                 "id":23,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":45,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":96,
-                 "x":64,
-                 "y":248
+                 "width":176,
+                 "x":176,
+                 "y":320
                 }, 
                 {
-                 "height":8,
-                 "id":24,
-                 "name":"Jump",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":80,
-                 "y":328
-                }, 
-                {
-                 "height":8,
-                 "id":25,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":46,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
                  "x":32,
-                 "y":328
+                 "y":320
                 }, 
                 {
-                 "height":8,
-                 "id":26,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":47,
+                 "name":"Jumps",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":80,
+                 "y":320
+                }, 
+                {
+                 "height":7.625,
+                 "id":48,
+                 "name":"Jumps",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96,
+                 "x":64,
+                 "y":240
+                }, 
+                {
+                 "height":7.625,
+                 "id":49,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":96,
                  "x":32,
-                 "y":168
+                 "y":160
                 }, 
                 {
-                 "height":8,
-                 "id":27,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":50,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":96,
                  "x":32,
-                 "y":88
+                 "y":80
                 }, 
                 {
-                 "height":8,
-                 "id":28,
-                 "name":"Jump",
+                 "height":7.625,
+                 "id":51,
+                 "name":"Jumps",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":96,
                  "x":160,
-                 "y":88
+                 "y":80
+                }, 
+                {
+                 "height":32,
+                 "id":55,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":32,
+                 "y":544
+                }, 
+                {
+                 "height":32,
+                 "id":56,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":64,
+                 "y":512
+                }, 
+                {
+                 "height":80,
+                 "id":57,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96,
+                 "x":192,
+                 "y":384
+                }, 
+                {
+                 "height":80,
+                 "id":59,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96,
+                 "x":256,
+                 "y":208
+                }, 
+                {
+                 "height":80,
+                 "id":60,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":160,
+                 "y":96
+                }, 
+                {
+                 "height":32,
+                 "id":61,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":272,
+                 "y":512
+                }, 
+                {
+                 "height":32,
+                 "id":62,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":240,
+                 "y":544
+                }, 
+                {
+                 "height":64,
+                 "id":63,
+                 "name":"Grasses",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":560
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -185,7 +289,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":29,
+ "nextobjectid":64,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

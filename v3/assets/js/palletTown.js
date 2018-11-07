@@ -96,30 +96,29 @@ class PalletTown extends Phaser.Scene {
          */
 
         this.input.keyboard.on('keydown_W', function (event) {
+            var scene = this;
             if (player.direction !== "up") {
                 return false;
             }
             map.letterbox.forEach(function (letterbox) {
                 if (player.x >= letterbox.x && player.x < letterbox.x + 20 && player.y >= letterbox.y && player.y < letterbox.y + 30) {
                     text.text = letterbox.properties.text;
-                    player.setActive(false).setMaxVelocity(0, 0);
+                    scene.scene.pause();
                 }
             });
 
             map.sign.forEach(function (sign) {
                 if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
                     text.text = sign.properties.text;
-                    player.setActive(false).setMaxVelocity(0, 0);
+                    scene.scene.pause();
 
                 }
             });
             setTimeout(function () {
                 text.text = "";
-                player.setActive(true).setMaxVelocity(999, 999);
-            }, 2000)
-
-
-        });
+                scene.scene.resume();
+            }, 2000);
+        },this);
 
 
         /**

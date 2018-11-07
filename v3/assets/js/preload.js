@@ -37,11 +37,6 @@ class Preload extends Phaser.Scene {
     }
 
     create() {
-        var text = this.add.text(300, 350, '', {
-            fontFamily: 'Arial',
-            fontSize: 12,
-            color: '#000000'
-        }).setDepth(1).setScrollFactor(0);
         /**
          * ANIMATION
          */
@@ -65,7 +60,7 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        this.scene.start("PalletTown")
+        this.scene.start("Route1")
     }
 }
 
