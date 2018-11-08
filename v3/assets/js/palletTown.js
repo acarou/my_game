@@ -1,4 +1,4 @@
-var map, pokeball, moveKeys, cursors,
+var player, map, pokeball, moveKeys, cursors, music,
 
     npc,
 
@@ -33,7 +33,7 @@ class PalletTown extends Phaser.Scene {
          * Main
          */
 
-        var music = this.sound.add('pallet-town-sound');
+        music = this.sound.add('pallet-town-sound');
         music.play();
 
 
@@ -216,6 +216,7 @@ class PalletTown extends Phaser.Scene {
 
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
+                music.stop();
                 this.scene.start(zone.properties.name);
             }
         }, this);

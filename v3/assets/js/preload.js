@@ -13,6 +13,8 @@ class Preload extends Phaser.Scene {
         this.load.image('pallet-town-tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
         this.load.tilemapTiledJSON('pallet-town-map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
 
+        /** intérior **/
+
         this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
         /**
@@ -33,6 +35,7 @@ class Preload extends Phaser.Scene {
          */
         this.load.image('route1-tiles', 'assets/images/background/Kanto_Route_1_Map_bank.png');
         this.load.tilemapTiledJSON('route1-map', 'assets/images/background/Kanto_Route_1_Map_map.json');
+        this.load.audio('route1-sound', 'assets/sounds/Route1.mp3')
 
     }
 

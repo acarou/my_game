@@ -1,4 +1,4 @@
-var map, moveKeys, cursors;
+var player, map, moveKeys, cursors, music;
 
 var toggleBike;
 
@@ -17,7 +17,7 @@ class Route1 extends Phaser.Scene {
          * Main
          */
 
-        var music = this.sound.add('pallet-town-sound');
+        music = this.sound.add('route1-sound');
         music.play();
 
         map = this.make.tilemap({key: 'route1-map'});
@@ -155,6 +155,7 @@ class Route1 extends Phaser.Scene {
         if (player.body.speed > 0) {
             map.zones.forEach(function (zone) {
                 if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
+                    music.stop();
                     this.scene.start(zone.properties.name);
                 }
             }, this);
@@ -165,7 +166,6 @@ class Route1 extends Phaser.Scene {
                             console.log('FIGHT')
                         }
                         return true;
-
                 }
 
             });
