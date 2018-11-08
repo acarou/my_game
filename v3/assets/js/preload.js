@@ -1,5 +1,6 @@
-var player,
+var
     first = true;
+    exit = false;
 
 class Preload extends Phaser.Scene {
     constructor() {
@@ -10,10 +11,18 @@ class Preload extends Phaser.Scene {
         /**
          * Pallet Town
          */
-        this.load.image('pallet-town-tiles', 'assets/images/background/Kanto_Pallet_Town_Map_bank.png');
-        this.load.tilemapTiledJSON('pallet-town-map', 'assets/images/background/Kanto_Pallet_Town_Map_map.json');
+        this.load.image('pallet-town-tiles', 'assets/images/background/PalletTown/Kanto_Pallet_Town_Map_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-map', 'assets/images/background/PalletTown/Kanto_Pallet_Town_Map_map.json');
 
         /** intérior **/
+
+       this.load.image('pallet-town-1F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/1F_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-1F-map', 'assets/images/background/PalletTown/Interiors/Hero/1F_map.json');
+
+        this.load.image('pallet-town-2F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/2F_bank.png');
+        //this.load.tilemapTiledJSON('pallet-town-2F-map', 'assets/images/background/PalletTown/Interiors/Hero/2F_map.json');
+
+
 
         this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
@@ -63,7 +72,7 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        this.scene.start("Route1")
+        this.scene.start("PalletTown")
     }
 }
 

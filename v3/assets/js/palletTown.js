@@ -9,12 +9,8 @@ class PalletTown extends Phaser.Scene {
         super({key: "PalletTown"});
     }
 
-    preload() {
-
-
-    }
-
     create() {
+
 
         var text = this.add.text(300, 350, '', {
             fontFamily: 'Arial',
@@ -45,12 +41,23 @@ class PalletTown extends Phaser.Scene {
 
         map.setCollisionByProperty({collides: true});
         var spawnPoint;
+        console.log(first);
+
         if (first === true) {
-            spawnPoint = map.findObject("Objects", obj => obj.name === "First Spawn Point");
+            spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
             first = false;
         } else {
-            spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+            spawnPoint = map.findObject("Objects", function (obj) {
+                if (obj.name === "Exits") {
+                    console.log(exit);
+                    if (obj.properties[0].value === exit) {
+                        return obj;
+                    }
+                }
+            });
         }
+        exit = "palletTown";
+
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
 
@@ -58,12 +65,14 @@ class PalletTown extends Phaser.Scene {
 
         map.letterbox = map.filterObjects("Objects", obj => obj.name === "Letterbox");
 
+        map.exit = map.filterObjects("Objects", obj => obj.name === "Exit");
+
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
 
 
-        this.cameras.main.setBounds(0, 0, 384, 320);
-        this.physics.world.setBounds(0, 0, 384, 320);
+        this.cameras.main.setBounds(layer.x, layer.y, layer.width, layer.height);
+        this.physics.world.setBounds(layer.x, layer.y, layer.width, layer.height);
         this.cameras.main.zoom = 3;
         this.cameras.main.startFollow(player);
 
@@ -118,7 +127,7 @@ class PalletTown extends Phaser.Scene {
                 text.text = "";
                 scene.scene.resume();
             }, 2000);
-        },this);
+        }, this);
 
 
         /**
@@ -217,7 +226,7 @@ class PalletTown extends Phaser.Scene {
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
                 music.stop();
-                this.scene.start(zone.properties.name);
+                this.scene.start(zone.properties[0].value);
             }
         }, this);
 
