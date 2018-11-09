@@ -20,9 +20,9 @@ class HeroHouse extends Phaser.Scene {
         /*music = this.sound.add('route1-sound');
         music.play();*/
 
-        map = this.make.tilemap({key: 'pallet-town-1F-map'});
+        map = this.make.tilemap({key: 'pallet-town-hero-1F-map'});
 
-        var tileset = map.addTilesetImage('1F_bank.png', "pallet-town-1F-tiles");
+        var tileset = map.addTilesetImage('1F_bank.png', "pallet-town-hero-1F-tiles");
 
         var layer = map.createStaticLayer("World", tileset, 0, 0);
 
@@ -32,7 +32,7 @@ class HeroHouse extends Phaser.Scene {
         var spawnPoint;
             spawnPoint = map.findObject("Objects", function (obj) {
                 if (obj.name === "Exits") {
-                    if (obj.properties[0].value === exit) {
+                    if (obj.properties.name === exit) {
                         exit = "Hero";
                         return obj;
                     }
@@ -111,23 +111,6 @@ class HeroHouse extends Phaser.Scene {
             }
         });
 
-        /**
-         * BIKE
-         */
-
-        this.input.keyboard.on('keydown_B', function () {
-            toggleBike = !toggleBike;
-            if (toggleBike) {
-
-                player.movement = "ride";
-                player.speedRate = player.walkRidePower;
-                playAnim(player, player.direction, player.movement);
-            } else {
-                player.movement = "walk";
-                player.speedRate = player.walkPower;
-                playAnim(player, player.direction, player.movement);
-            }
-        });
 
         this.input.keyboard.on('keydown_W', function (event) {
             var scene = this;
@@ -148,7 +131,7 @@ class HeroHouse extends Phaser.Scene {
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
                 music.stop();
-                this.scene.start(zone.properties[0].value);
+                this.scene.start(zone.properties.name);
             }
         }, this);
 

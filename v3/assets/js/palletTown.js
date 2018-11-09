@@ -41,7 +41,6 @@ class PalletTown extends Phaser.Scene {
 
         map.setCollisionByProperty({collides: true});
         var spawnPoint;
-        console.log(first);
 
         if (first === true) {
             spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
@@ -50,7 +49,7 @@ class PalletTown extends Phaser.Scene {
             spawnPoint = map.findObject("Objects", function (obj) {
                 if (obj.name === "Exits") {
                     console.log(exit);
-                    if (obj.properties[0].value === exit) {
+                    if (obj.properties.name === exit) {
                         return obj;
                     }
                 }
@@ -226,7 +225,8 @@ class PalletTown extends Phaser.Scene {
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
                 music.stop();
-                this.scene.start(zone.properties[0].value);
+                console.log(zone.properties.name);
+                this.scene.start(zone.properties.name);
             }
         }, this);
 

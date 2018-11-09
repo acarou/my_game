@@ -1,50 +1,40 @@
-var player, map, moveKeys, cursors, music;
-
-var toggleBike;
-
-var debugText, showDebug, debugGraphics;
-
-
-class Route1 extends Phaser.Scene {
+class OakHouse extends Phaser.Scene {
     constructor() {
-        super({key: "Route1"});
+        super({key: "OakHouse"})
     }
 
     create() {
+
+
         debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
 
         /**
          * Main
          */
 
-        music = this.sound.add('route1-sound');
-        music.play();
+        /*music = this.sound.add('route1-sound');
+        music.play();*/
 
-        map = this.make.tilemap({key: 'route1-map'});
+        map = this.make.tilemap({key: 'pallet-town-oak-1F-map'});
 
-        var tileset = map.addTilesetImage('Kanto_Route_1_Map_bank.png', "route1-tiles");
+        var tileset = map.addTilesetImage('1F_bank.png', "pallet-town-oak-1F-tiles");
 
         var layer = map.createStaticLayer("World", tileset, 0, 0);
 
         map.setCollisionByProperty({collides: true});
 
 
-        var spawnPoint = map.findObject("Objects", function (obj) {
+        var spawnPoint;
+        spawnPoint = map.findObject("Objects", function (obj) {
             if (obj.name === "Exits") {
-                if (obj.properties[0].value === exit) {
-                    exit = "Route1";
+                if (obj.properties.name === exit) {
+                    exit = "oakHouse";
                     return obj;
                 }
             }
         });
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
-
-        map.jumps = map.filterObjects("Objects", obj => obj.name === "Jumps");
-
-        map.grasses = map.filterObjects("Objects", obj => obj.name === "Grasses");
-
-        map.sign = map.filterObjects("Objects", obj => obj.name === "Sign");
 
 
 
@@ -53,8 +43,7 @@ class Route1 extends Phaser.Scene {
 
         this.cameras.main.setBounds(layer.x, layer.y, layer.width, layer.height);
         this.physics.world.setBounds(layer.x, layer.y, layer.width, layer.height);
-        this.cameras.main.zoom = 3;
-        this.cameras.main.startFollow(player);
+        this.cameras.main.zoom = 4.6;
 
         this.physics.add.collider(player, layer, playerCollision);
 
@@ -121,19 +110,6 @@ class Route1 extends Phaser.Scene {
          * BIKE
          */
 
-        this.input.keyboard.on('keydown_B', function () {
-            toggleBike = !toggleBike;
-            if (toggleBike) {
-
-                player.movement = "ride";
-                player.speedRate = player.walkRidePower;
-                playAnim(player, player.direction, player.movement);
-            } else {
-                player.movement = "walk";
-                player.speedRate = player.walkPower;
-                playAnim(player, player.direction, player.movement);
-            }
-        });
 
         this.input.keyboard.on('keydown_W', function (event) {
             var scene = this;
@@ -141,53 +117,25 @@ class Route1 extends Phaser.Scene {
                 return false;
             }
 
-            map.sign.forEach(function (sign) {
-                if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
-                    text.text = sign.properties.text;
-                    scene.scene.pause();
-
-                }
-            });
             setTimeout(function () {
                 text.text = "";
                 scene.scene.resume();
             }, 2000);
-        },this);
-
-
+        }, this);
     }
 
-    update(time, delta) {
 
-        if (player.body.speed > 0) {
-            map.zones.forEach(function (zone) {
-                if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
-                    music.stop();
-                    this.scene.start(zone.properties[0].value);
-                }
-            }, this);
+    update() {
 
-            map.grasses.forEach(function (grass) {
-                if (player.x >= grass.x && player.x < grass.x + grass.width && player.y >= grass.y && player.y < grass.y + grass.height) {
-                        if (Math.floor(Math.random() * 100)+1 === 50) {
-                            console.log('FIGHT')
-                        }
-                        return true;
-                }
-
-            });
-
-
-            if (player.direction === "down") {
-
-                map.jumps.forEach(function (jump) {
-                    if (player.x >= jump.x && player.x < jump.x + jump.width && player.y >= jump.y - 1 && player.y < jump.y + jump.height) {
-                        player.y = player.y + 20;
-                        return true;
-                    }
-                });
+        map.zones.forEach(function (zone) {
+            if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
+                music.stop();
+                this.scene.start(zone.properties.name);
             }
-        }
+        }, this);
+
+
+        debugText.text = 'x : ' + Math.round(player.x) + ' y :' + Math.round(player.y);
 
         player.body.setVelocity(0);
 
@@ -214,6 +162,5 @@ class Route1 extends Phaser.Scene {
         } else {
             player.anims.stop();
         }
-
     }
 }

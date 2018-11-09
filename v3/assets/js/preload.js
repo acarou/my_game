@@ -16,11 +16,20 @@ class Preload extends Phaser.Scene {
 
         /** intérior **/
 
-       this.load.image('pallet-town-1F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/1F_bank.png');
-        this.load.tilemapTiledJSON('pallet-town-1F-map', 'assets/images/background/PalletTown/Interiors/Hero/1F_map.json');
+        //Hero
+       this.load.image('pallet-town-hero-1F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/1F_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-hero-1F-map', 'assets/images/background/PalletTown/Interiors/Hero/1F_map.json');
 
-        this.load.image('pallet-town-2F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/2F_bank.png');
-        //this.load.tilemapTiledJSON('pallet-town-2F-map', 'assets/images/background/PalletTown/Interiors/Hero/2F_map.json');
+        this.load.image('pallet-town-hero-2F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/2F_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-hero-2F-map', 'assets/images/background/PalletTown/Interiors/Hero/2F_map.json');
+
+        //Rival
+        this.load.image('pallet-town-rival-1F-tiles', 'assets/images/background/PalletTown/Interiors/Rival/1F_bank.png');
+        //this.load.tilemapTiledJSON('pallet-rival-hero-1F-map', 'assets/images/background/PalletTown/Interiors/Rival/1F_map.json');
+
+        //OAK
+        this.load.image('pallet-town-oak-1F-tiles', 'assets/images/background/PalletTown/Interiors/OAK/1F_bank.png');
+        this.load.tilemapTiledJSON('pallet-town-oak-1F-map', 'assets/images/background/PalletTown/Interiors/OAK/1F_map.json');
 
 
 

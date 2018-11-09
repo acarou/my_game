@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="20">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" infinite="0" nextobjectid="20">
  <tileset firstgid="1" name="Kanto_Pallet_Town_Map_bank.png" tilewidth="16" tileheight="16" tilecount="99" columns="11">
   <image source="Kanto_Pallet_Town_Map_bank.png" width="176" height="144"/>
   <tile id="0">
@@ -488,7 +488,7 @@
    </properties>
   </tile>
  </tileset>
- <layer id="1" name="Above Player" width="24" height="20" locked="1">
+ <layer name="Above Player" width="24" height="20" locked="1">
   <data>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -972,7 +972,7 @@
    <tile gid="8"/>
   </data>
  </layer>
- <layer id="2" name="World" width="24" height="20" locked="1">
+ <layer name="World" width="24" height="20" locked="1">
   <data>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -1456,7 +1456,7 @@
    <tile gid="8"/>
   </data>
  </layer>
- <objectgroup id="3" name="Objects">
+ <objectgroup name="Objects">
   <object id="16" name="Exits" x="248" y="128">
    <properties>
     <property name="name" value="Rival"/>
@@ -1511,7 +1511,7 @@ Appuyer sur D pour ouvrir le Menu!</property>
   </object>
   <object id="11" name="Zones" x="240" y="112" width="16" height="15.3333">
    <properties>
-    <property name="name" value="Rival House"/>
+    <property name="name" value="RivalHouse"/>
    </properties>
   </object>
   <object id="12" name="Zones" x="96" y="112" width="16" height="15.3333">
@@ -1521,7 +1521,7 @@ Appuyer sur D pour ouvrir le Menu!</property>
   </object>
   <object id="13" name="Zones" x="256" y="208" width="16" height="15.3333">
    <properties>
-    <property name="name" value="Oak House"/>
+    <property name="name" value="OakHouse"/>
    </properties>
   </object>
   <object id="14" name="Zones" x="192" y="0" width="32" height="16">

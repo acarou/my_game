@@ -1,25 +1,14 @@
-{ "height":20,
+{ "height":18,
  "infinite":false,
  "layers":[
         {
-         "data":[1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 0, 0, 6, 2, 1, 2, 1, 2, 1, 2, 1, 2, 7, 8, 9, 10, 9, 10, 9, 10, 9, 10, 9, 11, 0, 0, 9, 10, 9, 10, 14, 10, 14, 10, 7, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 7, 19, 0, 0, 0, 21, 22, 22, 22, 23, 0, 0, 0, 0, 21, 22, 22, 22, 23, 0, 0, 0, 25, 8, 1, 3, 0, 0, 0, 28, 29, 29, 29, 30, 0, 0, 0, 0, 28, 29, 29, 29, 30, 0, 0, 0, 6, 2, 7, 19, 0, 0, 0, 33, 34, 34, 34, 35, 0, 0, 0, 0, 33, 34, 34, 34, 35, 0, 0, 0, 25, 8, 1, 3, 0, 0, 0, 38, 39, 40, 41, 42, 0, 0, 0, 0, 38, 39, 40, 41, 42, 0, 0, 0, 6, 2, 7, 19, 0, 0, 43, 44, 45, 46, 47, 48, 0, 0, 0, 43, 44, 45, 46, 47, 48, 0, 0, 0, 25, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 7, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 51, 52, 52, 52, 52, 53, 54, 0, 0, 25, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 56, 56, 56, 56, 57, 58, 0, 0, 6, 2, 7, 19, 0, 0, 0, 60, 60, 60, 60, 61, 0, 0, 0, 62, 63, 63, 63, 63, 64, 65, 0, 0, 25, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 68, 69, 70, 71, 72, 73, 0, 0, 6, 2, 7, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 76, 77, 78, 79, 80, 81, 0, 0, 25, 8, 1, 3, 0, 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 7, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 86, 86, 86, 61, 86, 86, 0, 0, 0, 6, 2, 7, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 8, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 7, 19, 96, 97, 96, 97, 96, 0, 0, 0, 0, 97, 96, 97, 96, 97, 96, 97, 96, 97, 96, 97, 25, 8],
-         "height":20,
-         "name":"Above Player",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":24,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 5, 6, 2, 1, 2, 1, 2, 1, 2, 1, 2, 7, 8, 9, 10, 9, 10, 9, 10, 9, 10, 9, 11, 12, 13, 9, 10, 9, 10, 14, 10, 14, 10, 7, 8, 1, 3, 4, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 17, 15, 15, 15, 15, 15, 15, 15, 18, 6, 2, 7, 19, 12, 20, 20, 21, 22, 22, 22, 23, 20, 20, 20, 20, 21, 22, 22, 22, 23, 20, 20, 24, 25, 8, 1, 3, 12, 26, 27, 28, 29, 29, 29, 30, 31, 20, 26, 27, 28, 29, 29, 29, 30, 31, 20, 24, 6, 2, 7, 19, 12, 24, 32, 33, 34, 34, 34, 35, 36, 20, 24, 32, 33, 34, 34, 34, 35, 36, 20, 24, 25, 8, 1, 3, 12, 24, 37, 38, 39, 40, 41, 42, 36, 20, 24, 37, 38, 39, 40, 41, 42, 36, 20, 24, 6, 2, 7, 19, 12, 24, 43, 44, 45, 46, 47, 48, 36, 20, 24, 43, 44, 45, 46, 47, 48, 36, 20, 24, 25, 8, 1, 3, 12, 49, 15, 50, 20, 49, 15, 15, 50, 20, 49, 15, 50, 20, 49, 15, 15, 50, 20, 24, 6, 2, 7, 19, 12, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 51, 52, 52, 52, 52, 53, 54, 20, 24, 25, 8, 1, 3, 12, 20, 20, 20, 20, 20, 20, 20, 20, 20, 26, 55, 56, 56, 56, 56, 57, 58, 59, 24, 6, 2, 7, 19, 12, 20, 26, 60, 60, 60, 60, 61, 31, 20, 24, 62, 63, 63, 63, 63, 64, 65, 12, 24, 25, 8, 1, 3, 12, 20, 24, 66, 66, 66, 66, 32, 36, 20, 24, 67, 68, 69, 70, 71, 72, 73, 12, 24, 6, 2, 7, 19, 12, 20, 24, 66, 66, 66, 66, 74, 36, 20, 24, 75, 76, 77, 78, 79, 80, 81, 12, 24, 25, 8, 1, 3, 12, 20, 24, 82, 83, 32, 83, 32, 36, 20, 49, 15, 15, 50, 20, 49, 15, 15, 84, 24, 6, 2, 7, 19, 12, 20, 49, 15, 15, 15, 15, 15, 50, 20, 26, 27, 27, 27, 27, 27, 27, 31, 20, 24, 25, 8, 1, 3, 12, 20, 20, 20, 20, 20, 20, 20, 20, 20, 85, 86, 86, 86, 61, 86, 86, 87, 20, 24, 6, 2, 7, 19, 88, 27, 27, 27, 27, 89, 90, 90, 91, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 24, 25, 8, 1, 3, 32, 32, 83, 32, 83, 92, 93, 93, 94, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 95, 6, 2, 7, 19, 96, 97, 96, 97, 96, 92, 93, 93, 94, 97, 96, 97, 96, 97, 96, 97, 96, 97, 96, 97, 25, 8],
-         "height":20,
+         "data":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 5, 6, 6, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 17, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 32, 32, 32, 33, 32, 32, 32, 32, 32, 32, 32, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 44, 45, 46, 47, 48, 49, 50, 51, 44, 45, 52, 53, 45, 44, 45, 44, 45, 44, 45, 44, 45, 44, 45, 44, 54, 55, 56, 57, 58, 59, 45, 44, 44, 45, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 62, 63, 64, 65, 66, 67, 60, 61, 45, 44, 68, 69, 68, 69, 68, 69, 68, 69, 70, 71, 68, 69, 72, 73, 74, 75, 45, 69, 68, 69, 44, 45, 60, 61, 60, 61, 76, 77, 78, 77, 79, 80, 78, 77, 78, 81, 60, 61, 60, 61, 60, 61, 45, 82, 83, 84, 85, 69, 86, 87, 87, 87, 88, 89, 87, 87, 87, 90, 68, 69, 68, 69, 68, 69, 44, 91, 92, 93, 94, 61, 95, 87, 87, 87, 96, 97, 87, 87, 87, 98, 60, 61, 60, 61, 60, 61, 45, 99, 100, 100, 101, 69, 86, 87, 87, 87, 102, 103, 87, 87, 87, 90, 68, 69, 68, 69, 68, 69, 44, 104, 105, 106, 107, 61, 95, 87, 87, 87, 108, 109, 87, 87, 87, 98, 60, 61, 60, 61, 60, 61, 45, 110, 111, 112, 113, 69, 86, 87, 87, 87, 87, 87, 87, 87, 87, 90, 68, 69, 68, 69, 68, 69, 44, 45, 60, 61, 60, 61, 95, 87, 87, 87, 87, 87, 87, 87, 87, 98, 60, 61, 60, 61, 60, 61, 45, 44, 68, 69, 68, 69, 114, 115, 116, 115, 116, 115, 116, 115, 116, 117, 68, 69, 68, 69, 68, 69, 44, 45, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 60, 61, 45, 44, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69, 68, 69],
+         "height":18,
          "name":"World",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":24,
+         "width":22,
          "x":0,
          "y":0
         }, 
@@ -28,13 +17,12 @@
          "name":"Objects",
          "objects":[
                 {
-                 "height":0,
-                 "id":16,
-                 "name":"Exits",
-                 "point":true,
+                 "height":24,
+                 "id":4,
+                 "name":"Zones",
                  "properties":
                     {
-                     "name":"Rival"
+                     "name":"HeroHouse"
                     },
                  "propertytypes":
                     {
@@ -43,33 +31,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":0,
-                 "x":248,
-                 "y":128
+                 "width":8,
+                 "x":136,
+                 "y":32
                 }, 
                 {
                  "height":0,
-                 "id":17,
-                 "name":"Exits",
-                 "point":true,
-                 "properties":
-                    {
-                     "name":"OAK"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":264,
-                 "y":224
-                }, 
-                {
-                 "height":0,
-                 "id":1,
+                 "id":8,
                  "name":"Exits",
                  "point":true,
                  "properties":
@@ -84,211 +52,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":104,
-                 "y":128
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"Exits",
-                 "point":true,
-                 "properties":
-                    {
-                     "name":"Route1"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":208,
-                 "y":16
-                }, 
-                {
-                 "height":16,
-                 "id":4,
-                 "name":"Sign",
-                 "properties":
-                    {
-                     "text":"LABO POK\u00e9MON DU PROF. CHEN"
-                    },
-                 "propertytypes":
-                    {
-                     "text":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":256,
-                 "y":256
-                }, 
-                {
-                 "height":16,
-                 "id":5,
-                 "name":"Sign",
-                 "properties":
-                    {
-                     "text":"BOURG PALETTE\nUn monde de couleurs\ns'ouvre \u00e0 vous"
-                    },
-                 "propertytypes":
-                    {
-                     "text":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":144,
-                 "y":176
-                }, 
-                {
-                 "height":16,
-                 "id":6,
-                 "name":"Sign",
-                 "properties":
-                    {
-                     "text":"ASTUCE DRESSEUR\nAppuyer sur D pour ouvrir le Menu!"
-                    },
-                 "propertytypes":
-                    {
-                     "text":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":80,
-                 "y":224
-                }, 
-                {
-                 "height":16,
-                 "id":7,
-                 "name":"Letterbox",
-                 "properties":
-                    {
-                     "text":"Votre maison"
-                    },
-                 "propertytypes":
-                    {
-                     "text":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":64,
-                 "y":112
-                }, 
-                {
-                 "height":16,
-                 "id":9,
-                 "name":"Letterbox",
-                 "properties":
-                    {
-                     "text":"Maison du rival"
-                    },
-                 "propertytypes":
-                    {
-                     "text":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":208,
-                 "y":112
-                }, 
-                {
-                 "height":15.3333,
-                 "id":11,
-                 "name":"Zones",
-                 "properties":
-                    {
-                     "name":"RivalHouse"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":240,
-                 "y":112
-                }, 
-                {
-                 "height":15.3333,
-                 "id":12,
-                 "name":"Zones",
-                 "properties":
-                    {
-                     "name":"HeroHouse"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":112
-                }, 
-                {
-                 "height":15.3333,
-                 "id":13,
-                 "name":"Zones",
-                 "properties":
-                    {
-                     "name":"OakHouse"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":256,
-                 "y":208
-                }, 
-                {
-                 "height":16,
-                 "id":14,
-                 "name":"Zones",
-                 "properties":
-                    {
-                     "name":"Route1"
-                    },
-                 "propertytypes":
-                    {
-                     "name":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":192,
-                 "y":0
-                }, 
-                {
-                 "height":0,
-                 "id":15,
-                 "name":"Spawn Point",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":false,
-                 "width":0,
-                 "x":104,
-                 "y":144
+                 "x":152,
+                 "y":40
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -296,38 +61,106 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":20,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
- "tileheight":16,
+ "tileheight":8,
  "tilesets":[
         {
-         "columns":11,
+         "columns":22,
          "firstgid":1,
-         "image":"Kanto_Pallet_Town_Map_bank.png",
-         "imageheight":144,
+         "image":"2F_bank.png",
+         "imageheight":48,
          "imagewidth":176,
          "margin":0,
-         "name":"Kanto_Pallet_Town_Map_bank.png",
+         "name":"2F_bank.png",
          "spacing":0,
-         "tilecount":99,
-         "tileheight":16,
+         "tilecount":132,
+         "tileheight":8,
          "tileproperties":
             {
              "0":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "1":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "10":
                 {
                  "collides":true
                 },
+             "100":
+                {
+                 "collides":false
+                },
+             "101":
+                {
+                 "collides":true
+                },
+             "102":
+                {
+                 "collides":true
+                },
+             "103":
+                {
+                 "collides":false
+                },
+             "104":
+                {
+                 "collides":true
+                },
+             "105":
+                {
+                 "collides":true
+                },
+             "106":
+                {
+                 "collides":false
+                },
+             "107":
+                {
+                 "collides":false
+                },
+             "108":
+                {
+                 "collides":false
+                },
+             "109":
+                {
+                 "collides":false
+                },
              "11":
+                {
+                 "collides":false
+                },
+             "110":
+                {
+                 "collides":false
+                },
+             "111":
+                {
+                 "collides":false
+                },
+             "112":
+                {
+                 "collides":false
+                },
+             "113":
+                {
+                 "collides":false
+                },
+             "114":
+                {
+                 "collides":false
+                },
+             "115":
+                {
+                 "collides":false
+                },
+             "116":
                 {
                  "collides":false
                 },
@@ -337,7 +170,7 @@
                 },
              "13":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "14":
                 {
@@ -361,27 +194,27 @@
                 },
              "19":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "2":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "20":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "21":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "22":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "23":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "24":
                 {
@@ -389,11 +222,11 @@
                 },
              "25":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "26":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "27":
                 {
@@ -413,7 +246,7 @@
                 },
              "30":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "31":
                 {
@@ -441,15 +274,15 @@
                 },
              "37":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "38":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "39":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "4":
                 {
@@ -457,19 +290,19 @@
                 },
              "40":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "41":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "42":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "43":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "44":
                 {
@@ -477,15 +310,15 @@
                 },
              "45":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "46":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "47":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "48":
                 {
@@ -497,7 +330,7 @@
                 },
              "5":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "50":
                 {
@@ -505,31 +338,31 @@
                 },
              "51":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "52":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "53":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "54":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "55":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "56":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "57":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "58":
                 {
@@ -537,15 +370,15 @@
                 },
              "59":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "6":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "60":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "61":
                 {
@@ -553,15 +386,15 @@
                 },
              "62":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "63":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "64":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "65":
                 {
@@ -569,27 +402,27 @@
                 },
              "66":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "67":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "68":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "69":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "7":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "70":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "71":
                 {
@@ -601,7 +434,7 @@
                 },
              "73":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "74":
                 {
@@ -609,11 +442,11 @@
                 },
              "75":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "76":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "77":
                 {
@@ -621,7 +454,7 @@
                 },
              "78":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "79":
                 {
@@ -629,15 +462,15 @@
                 },
              "8":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "80":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "81":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "82":
                 {
@@ -653,7 +486,7 @@
                 },
              "85":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "86":
                 {
@@ -661,7 +494,7 @@
                 },
              "87":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "88":
                 {
@@ -669,7 +502,7 @@
                 },
              "89":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "9":
                 {
@@ -677,7 +510,7 @@
                 },
              "90":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "91":
                 {
@@ -689,7 +522,7 @@
                 },
              "93":
                 {
-                 "collides":true
+                 "collides":false
                 },
              "94":
                 {
@@ -700,6 +533,18 @@
                  "collides":true
                 },
              "96":
+                {
+                 "collides":true
+                },
+             "97":
+                {
+                 "collides":false
+                },
+             "98":
+                {
+                 "collides":false
+                },
+             "99":
                 {
                  "collides":true
                 }
@@ -718,7 +563,75 @@
                 {
                  "collides":"bool"
                 },
+             "100":
+                {
+                 "collides":"bool"
+                },
+             "101":
+                {
+                 "collides":"bool"
+                },
+             "102":
+                {
+                 "collides":"bool"
+                },
+             "103":
+                {
+                 "collides":"bool"
+                },
+             "104":
+                {
+                 "collides":"bool"
+                },
+             "105":
+                {
+                 "collides":"bool"
+                },
+             "106":
+                {
+                 "collides":"bool"
+                },
+             "107":
+                {
+                 "collides":"bool"
+                },
+             "108":
+                {
+                 "collides":"bool"
+                },
+             "109":
+                {
+                 "collides":"bool"
+                },
              "11":
+                {
+                 "collides":"bool"
+                },
+             "110":
+                {
+                 "collides":"bool"
+                },
+             "111":
+                {
+                 "collides":"bool"
+                },
+             "112":
+                {
+                 "collides":"bool"
+                },
+             "113":
+                {
+                 "collides":"bool"
+                },
+             "114":
+                {
+                 "collides":"bool"
+                },
+             "115":
+                {
+                 "collides":"bool"
+                },
+             "116":
                 {
                  "collides":"bool"
                 },
@@ -1093,12 +1006,24 @@
              "96":
                 {
                  "collides":"bool"
+                },
+             "97":
+                {
+                 "collides":"bool"
+                },
+             "98":
+                {
+                 "collides":"bool"
+                },
+             "99":
+                {
+                 "collides":"bool"
                 }
             },
-         "tilewidth":16
+         "tilewidth":8
         }],
- "tilewidth":16,
+ "tilewidth":8,
  "type":"map",
  "version":1,
- "width":24
+ "width":22
 }

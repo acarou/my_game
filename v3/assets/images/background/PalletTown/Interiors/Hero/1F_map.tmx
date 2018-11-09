@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="24" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="3" nextobjectid="5">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="24" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="5">
  <tileset firstgid="1" name="1F_bank.png" tilewidth="8" tileheight="8" tilecount="154" columns="22">
   <image source="1F_bank.png" width="176" height="56"/>
   <tile id="0">
@@ -728,7 +728,7 @@
    </properties>
   </tile>
  </tileset>
- <layer id="1" name="World" width="24" height="18" locked="1">
+ <layer name="World" width="24" height="18" locked="1">
   <data>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -1164,7 +1164,7 @@
    <tile gid="76"/>
   </data>
  </layer>
- <objectgroup id="2" name="Objects">
+ <objectgroup name="Objects">
   <object id="1" name="Zones" x="48" y="130.5" width="16" height="13.5">
    <properties>
     <property name="name" value="PalletTown"/>
@@ -1172,7 +1172,7 @@
   </object>
   <object id="2" name="Zones" x="152" y="32" width="8" height="16">
    <properties>
-    <property name="name" value="Hero-2F"/>
+    <property name="name" value="HeroHouse2F"/>
    </properties>
   </object>
   <object id="3" name="Exits" x="56" y="128">
@@ -1181,7 +1181,7 @@
    </properties>
    <point/>
   </object>
-  <object id="4" name="Exits" x="152" y="40">
+  <object id="4" name="Exits" x="144" y="40">
    <properties>
     <property name="name" value="Hero-2F"/>
    </properties>
