@@ -49,6 +49,9 @@ class OakHouse extends Phaser.Scene {
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
 
+        map.oak = map.findObject("Objects", obj => obj.type === "NPC" && obj.name === "OAK");
+
+
 
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
@@ -153,6 +156,17 @@ class OakHouse extends Phaser.Scene {
                 text.text = "";
             }, 2000);
         }, this);
+
+        /**
+         * Oak position 357 : 362
+         */
+
+
+
+        var oak = this.physics.add.sprite(map.oak.x, map.oak.y, 'npc', map.oak.properties.startFrame).setImmovable(true);
+
+        this.physics.add.collider(oak, player);
+
     }
 
 

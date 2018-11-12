@@ -47,6 +47,7 @@ class Preload extends Phaser.Scene {
          */
         this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
         this.load.image('pokeball', 'assets/images/pokeball.png');
+        //this.load.image('pokemons', 'assets/image/')
 
         /**
          * Route1
@@ -81,8 +82,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        //exit = "palletTown";
-        this.scene.start("HeroHouse2F");
+        exit = "palletTown";
+        this.scene.start("OakHouse");
     }
 }
 

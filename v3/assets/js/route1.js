@@ -17,6 +17,12 @@ class Route1 extends Phaser.Scene {
          * Main
          */
 
+        var text = this.add.text(300, 350, '', {
+            fontFamily: 'Arial',
+            fontSize: 12,
+            color: '#000000'
+        }).setDepth(1).setScrollFactor(0);
+
         music = this.sound.add('route1-sound');
         music.play();
 
@@ -216,4 +222,8 @@ class Route1 extends Phaser.Scene {
         }
 
     }
+}
+
+function fight() {
+    
 }
