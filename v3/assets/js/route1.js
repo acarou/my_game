@@ -31,7 +31,7 @@ class Route1 extends Phaser.Scene {
 
         var spawnPoint = map.findObject("Objects", function (obj) {
             if (obj.name === "Exits") {
-                if (obj.properties[0].value === exit) {
+                if (obj.properties.name === exit) {
                     exit = "Route1";
                     return obj;
                 }
@@ -163,7 +163,7 @@ class Route1 extends Phaser.Scene {
             map.zones.forEach(function (zone) {
                 if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
                     music.stop();
-                    this.scene.start(zone.properties[0].value);
+                    this.scene.start(zone.properties.name);
                 }
             }, this);
 

@@ -17,7 +17,7 @@
          "name":"Objects",
          "objects":[
                 {
-                 "height":8,
+                 "height":12,
                  "id":2,
                  "name":"Zones",
                  "properties":
@@ -33,7 +33,7 @@
                  "visible":true,
                  "width":16,
                  "x":96,
-                 "y":200
+                 "y":196
                 }, 
                 {
                  "height":0,
@@ -42,7 +42,7 @@
                  "point":true,
                  "properties":
                     {
-                     "name":"oakHouse"
+                     "name":"palletTown"
                     },
                  "propertytypes":
                     {
@@ -53,7 +53,7 @@
                  "visible":true,
                  "width":0,
                  "x":104,
-                 "y":200
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -90,7 +90,7 @@
                 },
              "10":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "100":
                 {
@@ -102,19 +102,19 @@
                 },
              "102":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "103":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "104":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "105":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "106":
                 {
@@ -130,27 +130,27 @@
                 },
              "109":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "11":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "110":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "111":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "112":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "113":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "114":
                 {
@@ -170,11 +170,11 @@
                 },
              "118":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "119":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "12":
                 {
@@ -182,7 +182,7 @@
                 },
              "120":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "121":
                 {
@@ -198,7 +198,7 @@
                 },
              "124":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "13":
                 {
@@ -242,35 +242,35 @@
                 },
              "22":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "23":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "24":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "25":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "26":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "27":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "28":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "29":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "3":
                 {
@@ -278,43 +278,43 @@
                 },
              "30":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "31":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "32":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "33":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "34":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "35":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "36":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "37":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "38":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "39":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "4":
                 {
@@ -334,19 +334,19 @@
                 },
              "43":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "44":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "45":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "46":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "47":
                 {
@@ -418,11 +418,11 @@
                 },
              "62":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "63":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "64":
                 {
@@ -434,11 +434,11 @@
                 },
              "66":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "67":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "68":
                 {
@@ -446,7 +446,7 @@
                 },
              "69":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "7":
                 {
@@ -454,7 +454,7 @@
                 },
              "70":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "71":
                 {
@@ -462,35 +462,35 @@
                 },
              "72":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "73":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "74":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "75":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "76":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "77":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "78":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "79":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "8":
                 {
@@ -498,51 +498,51 @@
                 },
              "80":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "81":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "82":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "83":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "84":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "85":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "86":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "87":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "88":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "89":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "9":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "90":
                 {
-                 "collides":false
+                 "collides":true
                 },
              "91":
                 {

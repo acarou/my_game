@@ -1,6 +1,7 @@
 var
-    first = true;
-    exit = false;
+    exit = "SpawnPoint",
+    starter = [{name: "Bulbizarre", choice: false}, {name: "Salaméche", choice: false}, {name: "Carapuce", choice: false}],
+    choice = false;
 
 class Preload extends Phaser.Scene {
     constructor() {
@@ -17,7 +18,7 @@ class Preload extends Phaser.Scene {
         /** intérior **/
 
         //Hero
-       this.load.image('pallet-town-hero-1F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/1F_bank.png');
+        this.load.image('pallet-town-hero-1F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/1F_bank.png');
         this.load.tilemapTiledJSON('pallet-town-hero-1F-map', 'assets/images/background/PalletTown/Interiors/Hero/1F_map.json');
 
         this.load.image('pallet-town-hero-2F-tiles', 'assets/images/background/PalletTown/Interiors/Hero/2F_bank.png');
@@ -30,7 +31,6 @@ class Preload extends Phaser.Scene {
         //OAK
         this.load.image('pallet-town-oak-1F-tiles', 'assets/images/background/PalletTown/Interiors/OAK/1F_bank.png');
         this.load.tilemapTiledJSON('pallet-town-oak-1F-map', 'assets/images/background/PalletTown/Interiors/OAK/1F_map.json');
-
 
 
         this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
@@ -81,7 +81,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        this.scene.start("PalletTown")
+        //exit = "palletTown";
+        this.scene.start("HeroHouse2F");
     }
 }
 

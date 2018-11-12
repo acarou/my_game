@@ -43,7 +43,7 @@ class HeroHouse extends Phaser.Scene {
 
 
 
-        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
+        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
 
 
         this.cameras.main.setBounds(layer.x, layer.y, layer.width, layer.height);
@@ -72,7 +72,7 @@ class HeroHouse extends Phaser.Scene {
         player.runRidePower = 2;
         player.speedRate = player.walkPower;
         player.movement = "walk";
-        player.direction = "down";
+        player.direction = "up";
         toggleBike = false;
 
         /**
@@ -130,7 +130,6 @@ class HeroHouse extends Phaser.Scene {
 
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
-                music.stop();
                 this.scene.start(zone.properties.name);
             }
         }, this);

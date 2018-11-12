@@ -1465,7 +1465,7 @@
   </object>
   <object id="17" name="Exits" x="264" y="224">
    <properties>
-    <property name="name" value="OAK"/>
+    <property name="name" value="oakHouse"/>
    </properties>
    <point/>
   </object>
@@ -1529,7 +1529,10 @@ Appuyer sur D pour ouvrir le Menu!</property>
     <property name="name" value="Route1"/>
    </properties>
   </object>
-  <object id="15" name="Spawn Point" x="104" y="144" visible="0">
+  <object id="15" name="Exits" x="104" y="144">
+   <properties>
+    <property name="name" value="SpawnPoint"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

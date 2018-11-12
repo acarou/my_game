@@ -54,6 +54,26 @@
                  "width":0,
                  "x":152,
                  "y":40
+                }, 
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"Exits",
+                 "point":true,
+                 "properties":
+                    {
+                     "name":"SpawnPoint"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -61,7 +81,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":9,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

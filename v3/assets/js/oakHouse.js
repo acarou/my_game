@@ -1,9 +1,22 @@
+var player, map, moveKeys, cursors, music,
+
+    npc,
+
+    pokeballs,
+
+    debugText, showDebug, debugGraphics;
 class OakHouse extends Phaser.Scene {
     constructor() {
         super({key: "OakHouse"})
     }
 
     create() {
+
+        var text = this.add.text(300, 350, '', {
+            fontFamily: 'Arial',
+            fontSize: 12,
+            color: '#000000'
+        }).setDepth(1).setScrollFactor(0);
 
 
         debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
@@ -38,14 +51,27 @@ class OakHouse extends Phaser.Scene {
 
 
 
-        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
+        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
 
 
         this.cameras.main.setBounds(layer.x, layer.y, layer.width, layer.height);
         this.physics.world.setBounds(layer.x, layer.y, layer.width, layer.height);
-        this.cameras.main.zoom = 4.6;
+        this.cameras.main.zoom = 3.9;
+        this.cameras.main.startFollow(player);
 
         this.physics.add.collider(player, layer, playerCollision);
+
+        /**
+         * Pokeball
+         */
+        pokeballs = this.add.group();
+        let x = 137;
+        for (let i = 0; i < 3; i++) {
+            if (starter[i].choice === false) {
+            pokeballs.create(x, 76, 'pokeball').setDepth(1).setScale(0.7);
+            }
+            x += 15;
+        }
 
         /**
          * Debug
@@ -67,7 +93,7 @@ class OakHouse extends Phaser.Scene {
         player.runRidePower = 2;
         player.speedRate = player.walkPower;
         player.movement = "walk";
-        player.direction = "down";
+        player.direction = "up";
         toggleBike = false;
 
         /**
@@ -106,20 +132,25 @@ class OakHouse extends Phaser.Scene {
             }
         });
 
-        /**
-         * BIKE
-         */
-
 
         this.input.keyboard.on('keydown_W', function (event) {
-            var scene = this;
-            if (player.direction !== "up") {
+            var scene = this.scene;
+            if (player.direction !== "up" || choice === true) {
                 return false;
             }
+            pokeballs.getChildren().forEach(function (pokeball,key) {
+                if (player.x >= pokeball.x && player.x < pokeball.x + pokeball.width && player.y >= pokeball.y && player.y < pokeball.y + pokeball.height + 20) {
+                    scene.pause();
+                    text.text = "Vous avez choisis : "+starter[key].name;
+                    starter[key].choice = true;
+                    pokeball.setVisible(false);
+                    choice = starter[key].name;
+                }
+            });
 
             setTimeout(function () {
+                scene.resume();
                 text.text = "";
-                scene.scene.resume();
             }, 2000);
         }, this);
     }
@@ -129,7 +160,6 @@ class OakHouse extends Phaser.Scene {
 
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
-                music.stop();
                 this.scene.start(zone.properties.name);
             }
         }, this);
@@ -138,7 +168,6 @@ class OakHouse extends Phaser.Scene {
         debugText.text = 'x : ' + Math.round(player.x) + ' y :' + Math.round(player.y);
 
         player.body.setVelocity(0);
-
         // Horizontal movement
         if (cursors.left.isDown) {
             player.body.setVelocityX(-80 * player.speedRate);

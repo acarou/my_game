@@ -135,7 +135,6 @@ class HeroHouse2F extends Phaser.Scene {
 
         map.zones.forEach(function (zone) {
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
-                music.stop();
                 this.scene.start(zone.properties.name);
             }
         }, this);

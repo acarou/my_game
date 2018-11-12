@@ -54,7 +54,7 @@
                  "point":true,
                  "properties":
                     {
-                     "name":"OAK"
+                     "name":"oakHouse"
                     },
                  "propertytypes":
                     {
@@ -281,11 +281,19 @@
                 {
                  "height":0,
                  "id":15,
-                 "name":"Spawn Point",
+                 "name":"Exits",
                  "point":true,
+                 "properties":
+                    {
+                     "name":"SpawnPoint"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":0,
                  "x":104,
                  "y":144

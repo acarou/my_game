@@ -1,4 +1,4 @@
-var player, map, pokeball, moveKeys, cursors, music,
+var player, map, moveKeys, cursors, music,
 
     npc,
 
@@ -10,7 +10,6 @@ class PalletTown extends Phaser.Scene {
     }
 
     create() {
-
 
         var text = this.add.text(300, 350, '', {
             fontFamily: 'Arial',
@@ -40,21 +39,13 @@ class PalletTown extends Phaser.Scene {
         var layer = map.createStaticLayer("World", tileset, 0, 0);
 
         map.setCollisionByProperty({collides: true});
-        var spawnPoint;
-
-        if (first === true) {
-            spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
-            first = false;
-        } else {
-            spawnPoint = map.findObject("Objects", function (obj) {
+        var spawnPoint = map.findObject("Objects", function (obj) {
                 if (obj.name === "Exits") {
-                    console.log(exit);
                     if (obj.properties.name === exit) {
                         return obj;
                     }
                 }
             });
-        }
         exit = "palletTown";
 
 
@@ -76,12 +67,6 @@ class PalletTown extends Phaser.Scene {
         this.cameras.main.startFollow(player);
 
         this.physics.add.collider(player, layer, playerCollision);
-        /**
-         * pokeball
-         */
-        pokeball = this.physics.add.group();
-
-        this.physics.add.collider(player, pokeball);
 
         /**
          * Debug
@@ -223,9 +208,11 @@ class PalletTown extends Phaser.Scene {
 
 
         map.zones.forEach(function (zone) {
+            if (choice === false && zone.properties.name === "Route1") {
+                return false;
+            }
             if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
                 music.stop();
-                console.log(zone.properties.name);
                 this.scene.start(zone.properties.name);
             }
         }, this);

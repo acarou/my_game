@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="22" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="9">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="22" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="10">
  <tileset firstgid="1" name="2F_bank.png" tilewidth="8" tileheight="8" tilecount="132" columns="22">
   <image source="2F_bank.png" width="176" height="48"/>
   <tile id="0">
@@ -997,6 +997,12 @@
   <object id="8" name="Exits" x="152" y="40">
    <properties>
     <property name="name" value="Hero"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="Exits" x="40" y="96">
+   <properties>
+    <property name="name" value="SpawnPoint"/>
    </properties>
    <point/>
   </object>
