@@ -1,7 +1,11 @@
 var
     exit = "SpawnPoint",
-    starter = [{name: "Bulbizarre", choice: false}, {name: "Salaméche", choice: false}, {name: "Carapuce", choice: false}],
     choice = false;
+var starter = [
+    {name: "Bulbizarre", choice: false, frame: 0, attack: 5, pv: 50},
+    {name: "Salaméche",choice: false, frame: 85, attack: 10,pv :40},
+    {name: "Carapuce", choice: false, frame: 118, attack:15, pv: 30,}
+    ];
 
 class Preload extends Phaser.Scene {
     constructor() {
@@ -47,7 +51,7 @@ class Preload extends Phaser.Scene {
          */
         this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
         this.load.image('pokeball', 'assets/images/pokeball.png');
-        //this.load.image('pokemons', 'assets/image/')
+        this.load.spritesheet('pokemons', 'assets/images/pokemon/16x10.png', {frameWidth: 64, frameHeight: 64});
 
         /**
          * Route1

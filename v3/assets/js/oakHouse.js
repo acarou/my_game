@@ -137,22 +137,25 @@ class OakHouse extends Phaser.Scene {
 
 
         this.input.keyboard.on('keydown_W', function (event) {
-            var scene = this.scene;
-            if (player.direction !== "up" || choice === true) {
+            var world = this;
+            var pokemon;
+            if (player.direction !== "up" || choice !== false) {
                 return false;
             }
             pokeballs.getChildren().forEach(function (pokeball,key) {
                 if (player.x >= pokeball.x && player.x < pokeball.x + pokeball.width && player.y >= pokeball.y && player.y < pokeball.y + pokeball.height + 20) {
-                    scene.pause();
+                    world.scene.pause();
                     text.text = "Vous avez choisis : "+starter[key].name;
+                    pokemon = world.physics.add.sprite(490, 350, 'pokemons', starter[key].frame).setScale(0.4).setScrollFactor(0);
                     starter[key].choice = true;
                     pokeball.setVisible(false);
-                    choice = starter[key].name;
+                    choice = starter[key];
                 }
             });
 
             setTimeout(function () {
-                scene.resume();
+                world.scene.resume();
+                pokemon.destroy();
                 text.text = "";
             }, 2000);
         }, this);
@@ -162,10 +165,12 @@ class OakHouse extends Phaser.Scene {
          */
 
 
+        var npc = this.physics.add.group({
+            immovable: true,
+        });
 
-        var oak = this.physics.add.sprite(map.oak.x, map.oak.y, 'npc', map.oak.properties.startFrame).setImmovable(true);
-
-        this.physics.add.collider(oak, player);
+        npc.create(map.oak.x, map.oak.y, 'npc', map.oak.properties.startFrame);
+        this.physics.add.collider(npc, player, playerCollision);
 
     }
 
