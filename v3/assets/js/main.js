@@ -9,6 +9,6 @@ var config = {
             debug: true,
         }
     },
-    scene: [Preload, PalletTown, HeroHouse, HeroHouse2F, OakHouse ,Route1]
+    scene: [Preload, PalletTown, HeroHouse, HeroHouse2F, OakHouse ,Route1, Fight]
 };
 var game = new Phaser.Game(config);

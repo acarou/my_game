@@ -1,10 +1,10 @@
 var
     exit = "SpawnPoint",
-    choice = false;
+    choice = {name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,};
 var starter = [
-    {name: "Bulbizarre", choice: false, frame: 0, attack: 5, pv: 50},
-    {name: "Salaméche",choice: false, frame: 85, attack: 10,pv :40},
-    {name: "Carapuce", choice: false, frame: 118, attack:15, pv: 30,}
+    {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50},
+    {name: "Salaméche",choice: false, frame: 85, attack: 10,hp :40},
+    {name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,},
     ];
 
 class Preload extends Phaser.Scene {
@@ -52,13 +52,19 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
         this.load.image('pokeball', 'assets/images/pokeball.png');
         this.load.spritesheet('pokemons', 'assets/images/pokemon/16x10.png', {frameWidth: 64, frameHeight: 64});
+        this.load.spritesheet('pokemonsBack', 'assets/images/pokemon/back/16x10.png', {frameWidth: 64, frameHeight: 64});
 
         /**
          * Route1
          */
         this.load.image('route1-tiles', 'assets/images/background/Kanto_Route_1_Map_bank.png');
         this.load.tilemapTiledJSON('route1-map', 'assets/images/background/Kanto_Route_1_Map_map.json');
-        this.load.audio('route1-sound', 'assets/sounds/Route1.mp3')
+        this.load.audio('route1-sound', 'assets/sounds/Route1.mp3');
+
+        /**
+         * Fight
+         */
+        this.load.spritesheet('fight', 'assets/images/background/fight.png', {frameWidth: 259, frameHeight: 147})
 
     }
 
@@ -87,7 +93,7 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
         exit = "palletTown";
-        this.scene.start("OakHouse");
+        this.scene.start("Route1");
     }
 }
 

@@ -123,6 +123,7 @@ class Route1 extends Phaser.Scene {
             }
         });
 
+
         /**
          * BIKE
          */
@@ -160,10 +161,14 @@ class Route1 extends Phaser.Scene {
             }, 2000);
         },this);
 
+        fight(this);
+
+
 
     }
 
     update(time, delta) {
+
 
         if (player.body.speed > 0) {
             map.zones.forEach(function (zone) {
@@ -176,12 +181,12 @@ class Route1 extends Phaser.Scene {
             map.grasses.forEach(function (grass) {
                 if (player.x >= grass.x && player.x < grass.x + grass.width && player.y >= grass.y && player.y < grass.y + grass.height) {
                         if (Math.floor(Math.random() * 100)+1 === 50) {
-                            console.log('FIGHT')
+                            fight(this);
                         }
                         return true;
                 }
 
-            });
+            }, this);
 
 
             if (player.direction === "down") {
@@ -224,6 +229,11 @@ class Route1 extends Phaser.Scene {
     }
 }
 
-function fight() {
-    
+
+function fight(world) {
+    world.scene.run("Fight");
+    world.scene.pause();
+    player.body.setVelocity(0);
+
+
 }
