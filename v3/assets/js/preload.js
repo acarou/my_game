@@ -40,6 +40,15 @@ class Preload extends Phaser.Scene {
         this.load.audio('pallet-town-sound', 'assets/sounds/PalletTown.mp3');
 
         /**
+         * Viridian City
+         */
+
+        this.load.image('viridian-city-tiles', 'assets/images/background/ViridianCity/ViridianCity_bank.png');
+        this.load.tilemapTiledJSON('viridian-city-map', 'assets/images/background/ViridianCity/ViridianCity_map.json');
+
+        this.load.audio('viridian-city-sound', 'assets/sounds/ViridianCity.mp3');
+
+        /**
          * Player
          */
         this.load.spritesheet('ash_walk', 'assets/images/ash/walk.png', {frameWidth: 15, frameHeight: 19});
@@ -95,8 +104,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        exit = "palletTown";
-        this.scene.start("Route1");
+        exit = "Route1";
+        this.scene.start("ViridianCity");
     }
 }
 
