@@ -1,6 +1,6 @@
 var
     exit = "SpawnPoint",
-    choice = {name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,};
+    choice = false/*{name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,}*/;
 var starter = [
     {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50},
     {name: "Salaméche",choice: false, frame: 85, attack: 10,hp :40},
@@ -104,8 +104,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        exit = "Route1";
-        this.scene.start("ViridianCity");
+        //exit = "Route1";
+        this.scene.start("HeroHouse2F");
     }
 }
 
