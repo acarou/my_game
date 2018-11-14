@@ -1,4 +1,4 @@
-var player, map, moveKeys, cursors, music,
+var player, map, moveKeys, cursors,
 
     npc,
 

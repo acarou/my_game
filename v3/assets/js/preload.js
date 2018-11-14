@@ -54,6 +54,9 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('pokemons', 'assets/images/pokemon/16x10.png', {frameWidth: 64, frameHeight: 64});
         this.load.spritesheet('pokemonsBack', 'assets/images/pokemon/back/16x10.png', {frameWidth: 64, frameHeight: 64});
 
+        this.load.audio('battle', 'assets/sounds/Battle.mp3');
+
+
         /**
          * Route1
          */

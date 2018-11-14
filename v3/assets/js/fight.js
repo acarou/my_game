@@ -1,4 +1,4 @@
-var enemy,text,turn,finish;
+var enemy,text,turn,finish, music;
 
 class Fight extends Phaser.Scene{
     constructor() {
@@ -6,6 +6,8 @@ class Fight extends Phaser.Scene{
     }
 
     create() {
+        music = this.sound.add('battle');
+        music.play();
         enemy = {hp: 40,attack: 5, name: "Wild"};
         finish = false;
         turn = true;
@@ -14,6 +16,7 @@ class Fight extends Phaser.Scene{
         this.physics.add.sprite(130,98, 'fight', Math.floor(Math.random() * Math.floor(9)));
         this.cameras.main.setBounds(0, 0, 259, 195);
         this.physics.world.setBounds(0, 0, 259, 195);
+        this.cameras.main.setBackgroundColor("#808080");
         this.cameras.main.zoom = 3.1;
 
         var pokemon = this.physics.add.sprite(75, 150, 'pokemonsBack', choice.frame);
@@ -43,6 +46,7 @@ class Fight extends Phaser.Scene{
                 choice.hp -= enemy.attack;
                 if (choice.hp <= 0 ) {
                     choice.hp = 0;
+                    music.stop();
                     this.scene.stop("Route1");
                     exit = "SpawnPoint";
                     choice.hp = 40;
@@ -53,15 +57,20 @@ class Fight extends Phaser.Scene{
             turn = !turn;
 
             if (finish) {
-                this.scene.resume("Route1");
+                music.stop();
                 this.scene.stop();
+                this.scene.resume("Route1");
+
             }
         },this);
     }
 
     update() {
-
         text.text = choice.name + ' hp : '+choice.hp;
         enemy.text.text = enemy.name + ' hp : '+ enemy.hp
+    }
+
+    destroy() {
+        console.log('ciao');
     }
 }

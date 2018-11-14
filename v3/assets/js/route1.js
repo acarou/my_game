@@ -160,11 +160,6 @@ class Route1 extends Phaser.Scene {
                 scene.scene.resume();
             }, 2000);
         },this);
-
-        fight(this);
-
-
-
     }
 
     update(time, delta) {
@@ -231,9 +226,9 @@ class Route1 extends Phaser.Scene {
 
 
 function fight(world) {
+    music.stop();
     world.scene.run("Fight");
     world.scene.pause();
-    player.body.setVelocity(0);
 
 
 }
