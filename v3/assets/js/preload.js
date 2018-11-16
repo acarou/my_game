@@ -1,6 +1,6 @@
 var
     exit = "SpawnPoint",
-    choice = {name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,};
+    choice = {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 30,};
 var starter = [
     {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50},
     {name: "Salaméche",choice: false, frame: 85, attack: 10,hp :40},
@@ -30,7 +30,7 @@ class Preload extends Phaser.Scene {
 
         //Rival
         this.load.image('pallet-town-rival-1F-tiles', 'assets/images/background/PalletTown/Interiors/Rival/1F_bank.png');
-        //this.load.tilemapTiledJSON('pallet-rival-hero-1F-map', 'assets/images/background/PalletTown/Interiors/Rival/1F_map.json');
+        this.load.tilemapTiledJSON('pallet-town-rival-1F-map', 'assets/images/background/PalletTown/Interiors/Rival/1F_map.json');
 
         //OAK
         this.load.image('pallet-town-oak-1F-tiles', 'assets/images/background/PalletTown/Interiors/OAK/1F_bank.png');
@@ -104,8 +104,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        exit = "Route1";
-        this.scene.start("ViridianCity");
+        //exit = "Route1";
+        this.scene.start("PalletTown");
     }
 }
 

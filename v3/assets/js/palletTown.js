@@ -46,7 +46,7 @@ class PalletTown extends Phaser.Scene {
                     }
                 }
             });
-        exit = "palletTown";
+        exit = "PalletTown";
 
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
