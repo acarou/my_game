@@ -40,13 +40,13 @@ class PalletTown extends Phaser.Scene {
 
         map.setCollisionByProperty({collides: true});
         var spawnPoint = map.findObject("Objects", function (obj) {
-                if (obj.name === "Exits") {
-                    if (obj.properties.name === exit) {
-                        return obj;
-                    }
+            if (obj.name === "Exits") {
+                if (obj.properties.name === exit) {
+                    return obj;
                 }
-            });
-        exit = "palletTown";
+            }
+        });
+        exit = "PalletTown";
 
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
@@ -94,14 +94,14 @@ class PalletTown extends Phaser.Scene {
                 return false;
             }
             map.letterbox.forEach(function (letterbox) {
-                if (player.x >= letterbox.x && player.x < letterbox.x + 20 && player.y >= letterbox.y && player.y < letterbox.y + 30) {
+                if (getFaces(player, letterbox, null, 30)) {
                     text.text = letterbox.properties.text;
                     scene.scene.pause();
                 }
             });
 
             map.sign.forEach(function (sign) {
-                if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
+                if (getFaces(player, sign, null, 30)) {
                     text.text = sign.properties.text;
                     scene.scene.pause();
 
@@ -109,6 +109,7 @@ class PalletTown extends Phaser.Scene {
             });
             setTimeout(function () {
                 text.text = "";
+                scene.input.keyboard.resetKeys();
                 scene.scene.resume();
             }, 2000);
         }, this);

@@ -1,43 +1,39 @@
-var player, map, moveKeys, cursors, music;
+var player, map, moveKeys, cursors, music,
 
-var toggleBike;
+    npc,
 
-var debugText, showDebug, debugGraphics;
+    debugText, showDebug, debugGraphics;
 
-class ViridianCity extends Phaser.Scene {
+class RivalHouse extends Phaser.Scene {
     constructor() {
-        super({key: "ViridianCity"});
+        super({key: "RivalHouse"})
     }
 
     create() {
+
         debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
 
         /**
          * Main
          */
 
-        var text = this.add.text(300, 350, '', {
-            fontFamily: 'Arial',
-            fontSize: 12,
-            color: '#000000'
-        }).setDepth(1).setScrollFactor(0);
+        /*music = this.sound.add('route1-sound');
+        music.play();*/
 
-        //music = this.sound.add('viridian-city-sound');
-        //music.play();
+        map = this.make.tilemap({key: 'pallet-town-rival-1F-map'});
 
-        map = this.make.tilemap({key: 'viridian-city-map'});
-
-        var tileset = map.addTilesetImage('ViridianCity_bank.png', "viridian-city-tiles");
+        var tileset = map.addTilesetImage('1F_bank.png', "pallet-town-rival-1F-tiles");
 
         var layer = map.createStaticLayer("World", tileset, 0, 0);
 
         map.setCollisionByProperty({collides: true});
 
 
-        var spawnPoint = map.findObject("Objects", function (obj) {
+        var spawnPoint;
+        spawnPoint = map.findObject("Objects", function (obj) {
             if (obj.name === "Exits") {
                 if (obj.properties.name === exit) {
-                    exit = "ViridianCity";
+                    exit = "RivalHouse";
                     return obj;
                 }
             }
@@ -45,22 +41,13 @@ class ViridianCity extends Phaser.Scene {
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
 
-        map.jumps = map.filterObjects("Objects", obj => obj.name === "Jumps");
 
-        map.bush = map.filterObjects("Objects", obj => obj.name === "Bush");
-
-        map.water = map.filterObjects("Objects", obj => obj.name === "Water");
-
-        map.sign = map.filterObjects("Objects", obj => obj.name === "Signs");
-
-
-        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
+        player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
 
 
         this.cameras.main.setBounds(layer.x, layer.y, layer.width, layer.height);
         this.physics.world.setBounds(layer.x, layer.y, layer.width, layer.height);
-        this.cameras.main.zoom = 3;
-        this.cameras.main.startFollow(player);
+        this.cameras.main.zoom = 4.165;
 
         this.physics.add.collider(player, layer, playerCollision);
 
@@ -84,7 +71,7 @@ class ViridianCity extends Phaser.Scene {
         player.runRidePower = 2;
         player.speedRate = player.walkPower;
         player.movement = "walk";
-        player.direction = "down";
+        player.direction = "up";
         toggleBike = false;
 
         /**
@@ -124,38 +111,12 @@ class ViridianCity extends Phaser.Scene {
         });
 
 
-        /**
-         * BIKE
-         */
-
-        this.input.keyboard.on('keydown_B', function () {
-            toggleBike = !toggleBike;
-            if (toggleBike) {
-
-                player.movement = "ride";
-                player.speedRate = player.walkRidePower;
-                playAnim(player, player.direction, player.movement);
-            } else {
-                player.movement = "walk";
-                player.speedRate = player.walkPower;
-                playAnim(player, player.direction, player.movement);
-            }
-        });
-
         this.input.keyboard.on('keydown_W', function (event) {
             var scene = this;
             if (player.direction !== "up") {
                 return false;
             }
 
-            map.sign.forEach(function (sign) {
-                if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
-                    text.text = sign.properties.text;
-                    scene.input.keyboard.resetKeys();
-                    scene.scene.pause();
-
-                }
-            });
             setTimeout(function () {
                 text.text = "";
                 scene.scene.resume();
@@ -163,28 +124,17 @@ class ViridianCity extends Phaser.Scene {
         }, this);
     }
 
-    update(time, delta) {
 
+    update() {
 
-        if (player.body.speed > 0) {
-            map.zones.forEach(function (zone) {
-                if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
-                    //music.stop();
-                    this.scene.start(zone.properties.name);
-                }
-            }, this);
-
-
-            if (player.direction === "down") {
-
-                map.jumps.forEach(function (jump) {
-                    if (player.x >= jump.x && player.x < jump.x + jump.width && player.y >= jump.y - 1 && player.y < jump.y + jump.height) {
-                        player.y = player.y + 20;
-                        return true;
-                    }
-                });
+        map.zones.forEach(function (zone) {
+            if (player.x >= zone.x && player.x < zone.x + zone.width && player.y >= zone.y && player.y < zone.y + zone.height) {
+                this.scene.start(zone.properties.name);
             }
-        }
+        }, this);
+
+
+        debugText.text = 'x : ' + Math.round(player.x) + ' y :' + Math.round(player.y);
 
         player.body.setVelocity(0);
 
@@ -211,6 +161,6 @@ class ViridianCity extends Phaser.Scene {
         } else {
             player.anims.stop();
         }
-
     }
+
 }

@@ -5,6 +5,7 @@ var player, map, moveKeys, cursors, music,
     pokeballs,
 
     debugText, showDebug, debugGraphics;
+
 class OakHouse extends Phaser.Scene {
     constructor() {
         super({key: "OakHouse"})
@@ -52,8 +53,6 @@ class OakHouse extends Phaser.Scene {
         map.oak = map.findObject("Objects", obj => obj.type === "NPC" && obj.name === "OAK");
 
 
-
-
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
 
 
@@ -71,7 +70,7 @@ class OakHouse extends Phaser.Scene {
         let x = 137;
         for (let i = 0; i < 3; i++) {
             if (starter[i].choice === false) {
-            pokeballs.create(x, 76, 'pokeball').setDepth(1).setScale(0.7);
+                pokeballs.create(x, 76, 'pokeball').setDepth(1).setScale(0.7);
             }
             x += 15;
         }
@@ -135,6 +134,12 @@ class OakHouse extends Phaser.Scene {
             }
         });
 
+        var npc = this.physics.add.group({
+            immovable: true,
+        });
+
+        npc.create(map.oak.x, map.oak.y, 'npc', map.oak.properties.startFrame);
+        this.physics.add.collider(npc, player, playerCollision);
 
         this.input.keyboard.on('keydown_W', function (event) {
             var world = this;
@@ -142,35 +147,35 @@ class OakHouse extends Phaser.Scene {
             if (player.direction !== "up" || choice !== false) {
                 return false;
             }
-            pokeballs.getChildren().forEach(function (pokeball,key) {
-                if (player.x >= pokeball.x && player.x < pokeball.x + pokeball.width && player.y >= pokeball.y && player.y < pokeball.y + pokeball.height + 20) {
+            pokeballs.getChildren().forEach(function (pokeball, key) {
+                if (getFaces(player, pokeball, null, 10)) {
+
                     world.scene.pause();
-                    text.text = "Vous avez choisis : "+starter[key].name;
+                    text.text = "Vous avez choisis : " + starter[key].name;
                     pokemon = world.physics.add.sprite(490, 350, 'pokemons', starter[key].frame).setScale(0.4).setScrollFactor(0);
                     starter[key].choice = true;
                     pokeball.setVisible(false);
                     choice = starter[key];
+
                 }
             });
 
+            if (getFaces(player, map.oak, null, 30)) {
+                world.scene.pause();
+                text.text = map.oak.properties.text;
+            }
+
             setTimeout(function () {
+                world.input.keyboard.resetKeys();
                 world.scene.resume();
-                pokemon.destroy();
+                if (choice) {
+
+                    pokemon.destroy();
+                }
+
                 text.text = "";
             }, 2000);
         }, this);
-
-        /**
-         * Oak position 357 : 362
-         */
-
-
-        var npc = this.physics.add.group({
-            immovable: true,
-        });
-
-        npc.create(map.oak.x, map.oak.y, 'npc', map.oak.properties.startFrame);
-        this.physics.add.collider(npc, player, playerCollision);
 
     }
 

@@ -30,17 +30,16 @@ class HeroHouse extends Phaser.Scene {
 
 
         var spawnPoint;
-            spawnPoint = map.findObject("Objects", function (obj) {
-                if (obj.name === "Exits") {
-                    if (obj.properties.name === exit) {
-                        exit = "Hero";
-                        return obj;
-                    }
+        spawnPoint = map.findObject("Objects", function (obj) {
+            if (obj.name === "Exits") {
+                if (obj.properties.name === exit) {
+                    exit = "Hero";
+                    return obj;
                 }
-            });
+            }
+        });
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
-
 
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);

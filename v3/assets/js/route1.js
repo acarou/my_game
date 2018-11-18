@@ -53,7 +53,6 @@ class Route1 extends Phaser.Scene {
         map.sign = map.filterObjects("Objects", obj => obj.name === "Sign");
 
 
-
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
 
 
@@ -159,7 +158,7 @@ class Route1 extends Phaser.Scene {
                 text.text = "";
                 scene.scene.resume();
             }, 2000);
-        },this);
+        }, this);
     }
 
     update(time, delta) {
@@ -175,10 +174,10 @@ class Route1 extends Phaser.Scene {
 
             map.grasses.forEach(function (grass) {
                 if (player.x >= grass.x && player.x < grass.x + grass.width && player.y >= grass.y && player.y < grass.y + grass.height) {
-                        if (Math.floor(Math.random() * 100)+1 === 50) {
-                            fight(this);
-                        }
-                        return true;
+                    if (Math.floor(Math.random() * 100) + 1 === 50) {
+                        fight(this);
+                    }
+                    return true;
                 }
 
             }, this);
@@ -227,8 +226,9 @@ class Route1 extends Phaser.Scene {
 
 function fight(world) {
     music.stop();
-    world.scene.run("Fight");
+    world.input.keyboard.resetKeys();
     world.scene.pause();
+    world.scene.run("Fight");
 
 
 }

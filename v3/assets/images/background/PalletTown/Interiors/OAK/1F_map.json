@@ -42,7 +42,7 @@
                  "point":true,
                  "properties":
                     {
-                     "name":"palletTown"
+                     "name":"PalletTown"
                     },
                  "propertytypes":
                     {
@@ -63,12 +63,14 @@
                  "properties":
                     {
                      "name":"OAK",
-                     "startFrame":357
+                     "startFrame":357,
+                     "text":"Bonjour je suis le professeur Chen !"
                     },
                  "propertytypes":
                     {
                      "name":"string",
-                     "startFrame":"int"
+                     "startFrame":"int",
+                     "text":"string"
                     },
                  "rotation":0,
                  "type":"NPC",
