@@ -1,19 +1,19 @@
-var enemy,text,turn,finish, music;
+var enemy, text, turn, finish, music;
 
-class Fight extends Phaser.Scene{
+class Fight extends Phaser.Scene {
     constructor() {
-        super({ key: "Fight"})
+        super({key: "Fight"})
     }
 
     create() {
         music = this.sound.add('battle');
         music.play();
-        enemy = {hp: 40,attack: 5, name: "Wild"};
+        enemy = {hp: 40, attack: 5, name: "Wild"};
         finish = false;
         turn = true;
 
 
-        this.physics.add.sprite(130,98, 'fight', Math.floor(Math.random() * Math.floor(9)));
+        this.physics.add.sprite(130, 98, 'fight', Math.floor(Math.random() * Math.floor(9)));
         this.cameras.main.setBounds(0, 0, 259, 195);
         this.physics.world.setBounds(0, 0, 259, 195);
         this.cameras.main.setBackgroundColor("#808080");
@@ -22,13 +22,13 @@ class Fight extends Phaser.Scene{
         var pokemon = this.physics.add.sprite(75, 150, 'pokemonsBack', choice.frame);
         enemy.pokemon = this.physics.add.sprite(190, 90, 'pokemons', Math.floor(Math.random() * Math.floor(150)));
 
-        text = this.add.text(20, 100, choice.name + ' hp : '+choice.hp, {
+        text = this.add.text(20, 100, choice.name + ' hp : ' + choice.hp, {
             fontFamily: 'Arial',
             fontSize: 12,
             color: '#000000'
         });
 
-        enemy.text = this.add.text(150,40, 'hp: ',{
+        enemy.text = this.add.text(150, 40, 'hp: ', {
             fontFamily: 'Arial',
             fontSize: 12,
             color: '#000000'
@@ -44,12 +44,12 @@ class Fight extends Phaser.Scene{
                 }
             } else {
                 choice.hp -= enemy.attack;
-                if (choice.hp <= 0 ) {
+                if (choice.hp <= 0) {
                     choice.hp = 0;
                     music.stop();
                     this.scene.stop("Route1");
                     exit = "SpawnPoint";
-                    choice.hp = 40;
+                    choice.hp = choice.maxHP;
                     this.scene.start("HeroHouse2F");
                 }
             }
@@ -62,15 +62,11 @@ class Fight extends Phaser.Scene{
                 this.scene.resume("Route1");
 
             }
-        },this);
+        }, this);
     }
 
     update() {
-        text.text = choice.name + ' hp : '+choice.hp;
-        enemy.text.text = enemy.name + ' hp : '+ enemy.hp
-    }
-
-    destroy() {
-        console.log('ciao');
+        text.text = choice.name + ' hp : ' + choice.hp;
+        enemy.text.text = enemy.name + ' hp : ' + enemy.hp
     }
 }

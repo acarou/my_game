@@ -6,9 +6,9 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: 0,
-            debug: true,
+            debug: false,
         }
     },
-    scene: [Preload, PalletTown, HeroHouse, HeroHouse2F, RivalHouse, OakHouse ,Route1, Fight, PokeCenter, ViridianCity]
+    scene: [Preload, PalletTown, HeroHouse, HeroHouse2F, RivalHouse, OakHouse, Route1, Fight, PokeCenter, ViridianCity]
 };
 var game = new Phaser.Game(config);

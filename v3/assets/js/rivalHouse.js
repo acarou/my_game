@@ -42,7 +42,6 @@ class RivalHouse extends Phaser.Scene {
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
 
 
-
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 4).setCollideWorldBounds(true);
 
 

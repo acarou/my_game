@@ -6,7 +6,7 @@ var player, map, moveKeys, cursors,
 
 class HeroHouse2F extends Phaser.Scene {
     constructor() {
-        super( {key: "HeroHouse2F"})
+        super({key: "HeroHouse2F"})
     }
 
     create() {
@@ -41,7 +41,6 @@ class HeroHouse2F extends Phaser.Scene {
         });
 
         map.zones = map.filterObjects("Objects", obj => obj.name === "Zones");
-
 
 
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);

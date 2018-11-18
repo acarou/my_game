@@ -1,11 +1,11 @@
 var
     exit = "SpawnPoint",
-    choice = {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 10,};
+    choice = false;
 var starter = [
-    {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50},
-    {name: "Salaméche",choice: false, frame: 85, attack: 10,hp :40},
-    {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 30,},
-    ];
+    {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50, maxHP: 50},
+    {name: "Salaméche", choice: false, frame: 85, attack: 10, hp: 40, maxHP: 40},
+    {name: "Carapuce", choice: false, frame: 118, attack: 15, hp: 30, maxHP: 30},
+];
 
 class Preload extends Phaser.Scene {
     constructor() {
@@ -68,7 +68,10 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('npc', 'assets/images/npc/NPCs.png', {frameWidth: 20, frameHeight: 23});
         this.load.image('pokeball', 'assets/images/pokeball.png');
         this.load.spritesheet('pokemons', 'assets/images/pokemon/16x10.png', {frameWidth: 64, frameHeight: 64});
-        this.load.spritesheet('pokemonsBack', 'assets/images/pokemon/back/16x10.png', {frameWidth: 64, frameHeight: 64});
+        this.load.spritesheet('pokemonsBack', 'assets/images/pokemon/back/16x10.png', {
+            frameWidth: 64,
+            frameHeight: 64
+        });
 
         this.load.audio('battle', 'assets/sounds/Battle.mp3');
 
@@ -111,8 +114,7 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        exit = "ViridianCity";
-        this.scene.start("PokeCenter");
+        this.scene.start("HeroHouse2F");
     }
 }
 
@@ -127,7 +129,7 @@ function drawDebug() {
             collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
             faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
         });
-    }else {
+    } else {
         debugText.setVisible(false);
     }
 
@@ -164,12 +166,15 @@ function playerCollision() {
     player.anims.stop();
 }
 
-function getFaces(ObjectA, ObjectB, XMargin = 0, YBottomMargin = 0 ) {
+function getFaces(ObjectA, ObjectB, XMargin = 0, YBottomMargin = 0) {
     var CenterA = ObjectA.getCenter();
-    var CenterB = ObjectB.getCenter();
+    var CenterB = typeof ObjectB.getCenter === 'function' ? ObjectB.getCenter() : {
+        x: ObjectB.x + (ObjectB.width / 2),
+        y: ObjectB.y + (ObjectB.height / 2)
+    };
 
-    if (CenterA.x >= (CenterB.x - (ObjectB.width/2)) - XMargin && CenterA.x <= (CenterB.x + (ObjectB.width/2)) + 4 + XMargin) {
-        if (CenterA.y >= CenterB.y - (ObjectB.height/2) && CenterA.y < CenterB.y + (ObjectB.height/2 + YBottomMargin)) {
+    if (CenterA.x >= (CenterB.x - (ObjectB.width / 2)) - XMargin && CenterA.x <= (CenterB.x + (ObjectB.width / 2)) + 4 + XMargin) {
+        if (CenterA.y >= CenterB.y - (ObjectB.height / 2) && CenterA.y < CenterB.y + (ObjectB.height / 2 + YBottomMargin)) {
             return true;
         }
     }

@@ -54,7 +54,6 @@ class ViridianCity extends Phaser.Scene {
         map.sign = map.filterObjects("Objects", obj => obj.name === "Signs");
 
 
-
         player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'ash_walk', 1).setCollideWorldBounds(true);
 
 
@@ -152,6 +151,7 @@ class ViridianCity extends Phaser.Scene {
             map.sign.forEach(function (sign) {
                 if (player.x >= sign.x && player.x < sign.x + 20 && player.y >= sign.y && player.y < sign.y + 30) {
                     text.text = sign.properties.text;
+                    scene.input.keyboard.resetKeys();
                     scene.scene.pause();
 
                 }
@@ -160,7 +160,7 @@ class ViridianCity extends Phaser.Scene {
                 text.text = "";
                 scene.scene.resume();
             }, 2000);
-        },this);
+        }, this);
     }
 
     update(time, delta) {

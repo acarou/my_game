@@ -141,19 +141,12 @@ class PokeCenter extends Phaser.Scene {
                 return false;
             }
             NPC.getChildren().forEach(function (npc, index) {
-                /*if (player.getCenter().x >= npc.x - (npc.height / 2) && player.getCenter().x < npc.x + (npc.width/2)) {
-                    console.log("faces");
-                }*/
                 if (index === 0) {
                     if (getFaces(player, npc, null, 50)) {
                         text.text = map.npc[index].properties.text;
                         scene.input.keyboard.resetKeys();
+                        choice.hp = choice.maxHP;
                         scene.scene.pause();
-                        starter.forEach(function (pokemon) {
-                            if (pokemon.choice === true) {
-                                choice.hp = pokemon.hp;
-                            }
-                        });
                     }
                 } else {
                     if (getFaces(player, npc, null, 20)) {
