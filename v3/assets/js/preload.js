@@ -1,10 +1,10 @@
 var
     exit = "SpawnPoint",
-    choice = {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 30,};
+    choice = {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 10,};
 var starter = [
     {name: "Bulbizarre", choice: false, frame: 0, attack: 5, hp: 50},
     {name: "Salaméche",choice: false, frame: 85, attack: 10,hp :40},
-    {name: "Carapuce", choice: false, frame: 118, attack:15, hp: 30,},
+    {name: "Carapuce", choice: true, frame: 118, attack:15, hp: 30,},
     ];
 
 class Preload extends Phaser.Scene {
@@ -47,6 +47,13 @@ class Preload extends Phaser.Scene {
         this.load.tilemapTiledJSON('viridian-city-map', 'assets/images/background/ViridianCity/ViridianCity_map.json');
 
         this.load.audio('viridian-city-sound', 'assets/sounds/ViridianCity.mp3');
+
+        /** Interior **/
+
+        //PokeCenter
+
+        this.load.image('poke-center-tiles', 'assets/images/background/PokeCenter/PokeCenter_bank.png');
+        this.load.tilemapTiledJSON('poke-center-map', 'assets/images/background/PokeCenter/PokeCenter_map.json');
 
         /**
          * Player
@@ -104,8 +111,8 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        //exit = "Route1";
-        this.scene.start("PalletTown");
+        exit = "ViridianCity";
+        this.scene.start("PokeCenter");
     }
 }
 
@@ -113,12 +120,15 @@ function drawDebug() {
     debugGraphics.clear();
 
     if (showDebug) {
+        debugText.setVisible(true);
         // Pass in null for any of the style options to disable drawing that component
         map.renderDebug(debugGraphics, {
             tileColor: null, // Non-colliding tiles
             collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
             faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
         });
+    }else {
+        debugText.setVisible(false);
     }
 
 }
@@ -152,4 +162,15 @@ function npcCollision() {
 
 function playerCollision() {
     player.anims.stop();
+}
+
+function getFaces(ObjectA, ObjectB, XMargin = 0, YBottomMargin = 0 ) {
+    var CenterA = ObjectA.getCenter();
+    var CenterB = ObjectB.getCenter();
+
+    if (CenterA.x >= (CenterB.x - (ObjectB.width/2)) - XMargin && CenterA.x <= (CenterB.x + (ObjectB.width/2)) + 4 + XMargin) {
+        if (CenterA.y >= CenterB.y - (ObjectB.height/2) && CenterA.y < CenterB.y + (ObjectB.height/2 + YBottomMargin)) {
+            return true;
+        }
+    }
 }
