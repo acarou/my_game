@@ -11,9 +11,6 @@ class PokeCenter extends Phaser.Scene {
 
     create() {
 
-        savePlayer(exit, starter, this.scene.key);
-
-
         debugText = this.add.text(200, 150, "", {
             fontFamily: 'Arial',
             fontSize: 24,
