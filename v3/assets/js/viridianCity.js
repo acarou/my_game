@@ -10,6 +10,8 @@ class ViridianCity extends Phaser.Scene {
     }
 
     create() {
+        savePlayer(exit, starter, this.scene.key);
+
         debugText = this.add.text(600, 50, "", {fontFamily: 'Arial', fontSize: 24, color: '#ffff00'});
 
         /**

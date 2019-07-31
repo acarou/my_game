@@ -114,7 +114,17 @@ class Preload extends Phaser.Scene {
         createAnim(this, 'ash_ride', 'right_ride', 10, 6, 8);
         createAnim(this, 'ash_ride', 'left_ride', 10, 9, 11);
 
-        this.scene.start("HeroHouse2F");
+        let info = loadPlayer();
+        if (info) {
+            console.log(info.scene);
+            exit = info.exit;
+            starter = info.starter;
+            choice = info.choice;
+            console.log(info.starter);
+            this.scene.start(info.scene)
+        } else {
+            this.scene.start("HeroHouse2F");
+        }
     }
 }
 
@@ -178,4 +188,31 @@ function getFaces(ObjectA, ObjectB, XMargin = 0, YBottomMargin = 0) {
             return true;
         }
     }
+}
+
+function savePlayer(exit, starter, scene) {
+    /**
+     * Spawn point , starter
+     */
+
+    localStorage.setItem('spawnPoint', exit);
+    localStorage.setItem('starter', JSON.stringify(starter));
+    localStorage.setItem('scene', scene);
+    localStorage.setItem('choice', choice);
+
+}
+
+function loadPlayer() {
+    let info = [];
+
+    if (localStorage.getItem('spawnPoint') && localStorage.getItem('starter') && localStorage.getItem('scene')) {
+        info.exit = localStorage.getItem('spawnPoint');
+        info.starter = JSON.parse(localStorage.getItem('starter'));
+        info.scene = localStorage.getItem('scene');
+        info.choice = localStorage.getItem('choice');
+        return info;
+    } else {
+        return false;
+    }
+
 }

@@ -10,6 +10,8 @@ class PalletTown extends Phaser.Scene {
     }
 
     create() {
+        savePlayer(exit, starter, this.scene.key);
+
 
         var text = this.add.text(300, 350, '', {
             fontFamily: 'Arial',
